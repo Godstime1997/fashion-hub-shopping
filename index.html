@@ -2,27 +2,27 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fashion Hub - 12,000+ Clothes</title>
+<title>Fashion Hub - 12,000+ Clothes - Pay with Paystack</title>
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <style>
 body{font-family:Arial;margin:0;background:#fff5f0}
 header{background:#000;color:#fff;padding:14px;text-align:center;position:sticky;top:0;z-index:10}
 header h1{margin:0;font-size:22px}
 header p{margin:3px;color:#ffcc00;font-size:12px}
-.search{padding:10px;text-align:center;background:#fff;position:sticky;top:60px;z-index:9}
+.search{padding:10px;text-align:center;background:#fff}
 .search input{width:92%;padding:12px;border:1px solid #ddd;border-radius:25px}
 .cat{padding:8px;text-align:center;overflow-x:auto;white-space:nowrap}
 .cat button{padding:8px 13px;margin:2px;border:none;border-radius:20px;background:#000;color:#fff;font-size:12px}
 .cat button.active{background:#ff6600}
-.count-bar{background:#ff6600;color:#fff;text-align:center;padding:8px;font-weight:bold;font-size:13px}
+.count-bar{background:#ff6600;color:#fff;text-align:center;padding:8px;font-weight:bold}
 .products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;padding-bottom:140px}
 .card{background:#fff;border-radius:12px;padding:9px;text-align:center}
-.card img{width:100%;height:165px;object-fit:cover;border-radius:10px}
-.card h3{font-size:12px;margin:6px 0 2px;min-height:28px}
+.card img{width:100%;height:180px;object-fit:cover;border-radius:10px}
+.card h3{font-size:12px;margin:6px 0 2px;min-height:30px}
 .badge{background:#ff6600;color:#fff;font-size:9px;padding:3px 7px;border-radius:10px}
-.card p{color:#e60000;font-weight:bold;margin:4px;font-size:13px}
+.card p{color:#e60000;font-weight:bold;margin:4px}
 .card del{color:#999;font-size:11px}
-.colors{display:flex;justify-content:center;gap:4px;margin:5px 0;flex-wrap:wrap}
+.colors{display:flex;justify-content:center;gap:4px;margin:5px 0}
 .color-dot{width:24px;height:24px;border-radius:50%;border:2px solid #ddd;cursor:pointer}
 .color-dot.selected{border:3px solid #000}
 .color-name{font-size:11px;color:#555}
@@ -35,7 +35,10 @@ header p{margin:3px;color:#ffcc00;font-size:12px}
 .modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:30;overflow-y:auto}
 .modal-box{background:#fff;margin:12px;border-radius:15px;padding:15px}
 input,select{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:10px;box-sizing:border-box}
-.pay-btn{background:#00c853;color:#fff;border:none;padding:14px;width:100%;border-radius:12px;font-weight:bold;font-size:16px}
+.total-box{background:#fff5f0;border:2px dashed #ff6600;border-radius:12px;padding:12px;margin:10px 0;font-size:15px}
+.total-box b{float:right}
+.grand{background:#000;color:#fff;padding:10px;border-radius:10px;font-size:18px;text-align:center;margin-top:8px}
+.pay-btn{background:#00c853;color:#fff;border:none;padding:15px;width:100%;border-radius:12px;font-weight:bold;font-size:17px}
 .wa-btn{background:#25D366;color:#fff;border:none;padding:12px;width:100%;border-radius:12px;font-weight:bold;margin-top:8px}
 .close{background:#000;color:#fff;border:none;padding:8px 14px;border-radius:20px;float:right}
 .cart-item{display:flex;gap:10px;border-bottom:1px solid #eee;padding:10px 0;align-items:center}
@@ -44,8 +47,8 @@ input,select{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-r
 </style>
 </head>
 <body>
-<header><h1>👗 FASHION HUB</h1><p>🔥 12,000+ LATEST 2026 CLOTHES | Port Harcourt | Pay with Paystack</p><p>📞 WhatsApp: 09037002209</p></header>
-<div class="search"><input type="text" id="search" placeholder="Search 12,000+ clothes... e.g. Red Ankara, Black Hoodie, Pink Gown" onkeyup="searchP()"></div>
+<header><h1>👗 FASHION HUB</h1><p>🔥 12,000+ DIFFERENT CLOTHES | Pay Direct to Paystack</p><p>📞 WhatsApp: 09037002209</p></header>
+<div class="search"><input type="text" id="search" placeholder="Search 12,000+... Red Gown, Black Hoodie" onkeyup="searchP()"></div>
 <div class="cat">
 <button onclick="filterCat('all',this)" class="active">All (12,000+)</button>
 <button onclick="filterCat('men',this)">Men</button>
@@ -55,120 +58,50 @@ input,select{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-r
 <button onclick="filterCat('bags',this)">Bags</button>
 <button onclick="filterCat('accessories',this)">Accessories</button>
 </div>
-<div class="count-bar">Showing <span id="showing">20</span> of <span id="totalCount">12000</span> clothes | Tap Load More to see more</div>
+<div class="count-bar">Showing <span id="showing">0</span> of <span id="totalCount">0</span> clothes</div>
 <div class="products" id="products"></div>
-<div class="cart-bar">🛒 <span id="count">0</span> items | ₦<span id="total">0</span><br><button onclick="openCart()">View Cart</button><button class="pay" onclick="openCart()">💳 Checkout with Paystack</button></div>
-
+<div class="cart-bar">🛒 <span id="count">0</span> items | TOTAL: ₦<span id="total">0</span><br><button onclick="openCart()">View Cart & Total</button><button class="pay" onclick="openCart()">💳 Pay Now - Paystack</button></div>
 <div class="modal" id="cartModal"><div class="modal-box">
-<button class="close" onclick="closeCart()">X Close</button>
-<h2>🛒 Your Cart</h2><div id="cartList"></div><h3 id="cartTotal"></h3><hr>
+<button class="close" onclick="closeCart()">X Close</button><h2>🛒 Your Cart - Total Calculator</h2>
+<div id="cartList"></div>
+<div class="total-box">
+Items Subtotal <b>₦<span id="subTotal">0</span></b><br><br>
+Delivery Fee <b>₦<span id="deliveryFee">2,000</span></b><br><br>
+Number of Items <b><span id="itemCount">0</span></b>
+<div class="grand">GRAND TOTAL TO PAY: ₦<span id="grandTotal">0</span></div>
+</div>
 <h3>📦 Delivery Details</h3>
-<input id="cName" placeholder="Your Full Name *"><input id="cPhone" placeholder="Phone Number *"><input id="cEmail" placeholder="Email for Receipt *"><input id="cAddress" placeholder="Delivery Address *">
-<select id="cLocation"><option value="PH">Port Harcourt - ₦2,000</option><option value="Lagos">Lagos - ₦3,500</option><option value="Abuja">Abuja - ₦3,500</option><option value="Other">Other State - ₦4,500</option></select>
-<p><b>Delivery:</b> ₦<span id="deliveryFee">2,000</span> | <b>Grand Total:</b> ₦<span id="grandTotal">0</span></p>
-<button class="pay-btn" onclick="payWithPaystack()">💳 PAY NOW WITH PAYSTACK</button>
-<button class="wa-btn" onclick="checkoutWhatsApp()">💬 Order on WhatsApp Instead</button>
+<input id="cName" placeholder="Full Name *"><input id="cPhone" placeholder="Phone *"><input id="cEmail" placeholder="Email for Receipt *"><input id="cAddress" placeholder="Delivery Address *">
+<select id="cLocation" onchange="renderCart()"><option value="PH">Port Harcourt - ₦2,000</option><option value="Lagos">Lagos - ₦3,500</option><option value="Abuja">Abuja - ₦3,500</option><option value="Other">Other State - ₦4,500</option></select>
+<button class="pay-btn" onclick="payWithPaystack()">💳 PAY ₦<span id="payBtnTotal">0</span> NOW WITH PAYSTACK</button>
+<button class="wa-btn" onclick="checkoutWhatsApp()">💬 Or Order on WhatsApp</button>
+<p style="font-size:12px;text-align:center;color:#666">Secure payment via Paystack - Card, Transfer, USSD, Bank</p>
 </div></div>
-
 <script>
-let PAYSTACK_KEY = "pk_test_xxxxxxxx"; // REPLACE WITH YOUR PAYSTACK PUBLIC KEY
-// --- 12,000+ GENERATOR ---
-let baseStyles=[
-{cat:"men",name:"Oversized T-Shirt",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500",price:9500},
-{cat:"men",name:"Baggy Cargo Jeans",img:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=500",price:18000},
-{cat:"men",name:"Senator Wear",img:"https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500",price:25000},
-{cat:"men",name:"Hoodie",img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500",price:19000},
-{cat:"men",name:"Vintage Shirt",img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500",price:13500},
-{cat:"men",name:"Two-Piece Set",img:"https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500",price:22000},
-{cat:"men",name:"Blazer",img:"https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500",price:28000},
-{cat:"men",name:"Joggers",img:"https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=500",price:15000},
-{cat:"men",name:"Polo Shirt",img:"https://images.unsplash.com/photo-1626497764746-6dc36546b388?w=500",price:11000},
-{cat:"men",name:"Denim Jacket",img:"https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=500",price:20000},
-{cat:"women",name:"Bodycon Gown",img:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500",price:19000},
-{cat:"women",name:"Ankara Gown",img:"https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500",price:22000},
-{cat:"women",name:"Crop Top + Skirt",img:"https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=500",price:14000},
-{cat:"women",name:"Denim Jacket",img:"https://images.unsplash.com/photo-1551537482-c6e64d1b6b4c?w=500",price:17000},
-{cat:"women",name:"Pleated Skirt",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500",price:11500},
-{cat:"women",name:"Maxi Gown",img:"https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500",price:23000},
-{cat:"women",name:"Jumpsuit",img:"https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500",price:21000},
-{cat:"women",name:"Cargo Trouser",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500",price:14500},
-{cat:"women",name:"Summer Dress",img:"https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500",price:16000},
-{cat:"women",name:"Blazer Set",img:"https://images.unsplash.com/photo-1544441893-675973e31985?w=500",price:26000},
-{cat:"kids",name:"Boys Set",img:"https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=500",price:11000},
-{cat:"kids",name:"Girls Dress",img:"https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=500",price:10000},
-{cat:"kids",name:"Kids Hoodie",img:"https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=500",price:12000},
-{cat:"kids",name:"Kids Jeans",img:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=500",price:9500},
-{cat:"kids",name:"Party Gown",img:"https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=500",price:15000},
-{cat:"shoes",name:"Nike Sneakers",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500",price:28000},
-{cat:"shoes",name:"Heels",img:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500",price:21000},
-{cat:"shoes",name:"White Sneakers",img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500",price:24000},
-{cat:"shoes",name:"Loafers",img:"https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=500",price:23000},
-{cat:"shoes",name:"Slides",img:"https://images.unsplash.com/photo-1603487742131-4160ec999306?w=500",price:8000},
-{cat:"bags",name:"Handbag",img:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500",price:15000},
-{cat:"bags",name:"Backpack",img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",price:16000},
-{cat:"bags",name:"Cross Bag",img:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500",price:12000},
-{cat:"bags",name:"Tote Bag",img:"https://images.unsplash.com/photo-1591561954557-26941169b49e?w=500",price:11000},
-{cat:"accessories",name:"Wrist Watch",img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500",price:18000},
-{cat:"accessories",name:"Sunglasses",img:"https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500",price:8000},
-{cat:"accessories",name:"Face Cap",img:"https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=500",price:7000},
-{cat:"accessories",name:"Necklace Set",img:"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500",price:9000},
-];
+let PAYSTACK_KEY="pk_live_522e90bc4d7ec45abe67ed9b807d7512a0d8ce5b";
+let IMG={men:["photo-1521572163474-6864f9cf17ab","photo-1596755094514-f87e34085b2c","photo-1602810318383-e386cc2a3ccf","photo-1617137968427-85924c800a22","photo-1507679799987-c73779587ccf","photo-1594938298603-c8148c4dae35","photo-1556821840-3a63f95609a7","photo-1576995853123-5a10305d93c0","photo-1626497764746-6dc36546b388","photo-1552902865-b72c031ac5ea","photo-1611312449408-fcece27cdbb7","photo-1603252109303-2751441dd157"],women:["photo-1595777457583-95e059d581b8","photo-1539109136881-3be0616acf4b","photo-1551163943-3f6a855d1153","photo-1551537482-c6e64d1b6b4c","photo-1594633312681-425c7b97ccd1","photo-1515372039744-b8f02a3ae446","photo-1509631179647-0177331693ae","photo-1496747611176-843222e1e57c","photo-1544441893-675973e31985","photo-1490481651871-ab68de25d43d","photo-1517841905240-472988babdf9","photo-1524504388940-b1c1722653e1","photo-1529139574466-a303027c1d8b","photo-1483985988355-763728e1935b"],kids:["photo-1622290291468-a28f7a7dc6a8","photo-1471286174890-9c112ffca5b4","photo-1518831959646-742c3a14ebf7","photo-1519238263530-99bdd11df2ea","photo-1519457431-44ccd64a579b","photo-1514989940723-e8e51635b782","photo-1503454537195-1dcabb73ffb9","photo-1472162072942-cd5147eb3902"],shoes:["photo-1542291026-7eec264c27ff","photo-1543163521-1bf539c55dd2","photo-1549298916-b41d501d3772","photo-1614252369475-531eba835eb1","photo-1603487742131-4160ec999306","photo-1560769629-975ec94e6a86","photo-1595950653106-6c9ebd614d3a","photo-1606107557195-0e29a4b5b4aa","photo-1608231387042-66d1773070a5","photo-1605348532760-6753d2c43329"],bags:["photo-1584917865442-de89df76afd3","photo-1553062407-98eeb64c6a62","photo-1548036328-c9fa89d128fa","photo-1591561954557-26941169b49e","photo-1590874103328-eac38a683ce7","photo-1548863227-3af567fc3b27","photo-1559563458-527698bf5295"],accessories:["photo-1523275335684-37898b6baf30","photo-1572635196237-14b3f281503f","photo-1588850561407-ed78c282e89b","photo-1515562141207-7a88fb7ce338","photo-1624222247344-8421b8d2d2fe","photo-1573408301185-9146fe634ad0","photo-1611591437281-460bfbe1220a","photo-1599643478518-a784e5dc4c8f"]};
+let NAMES={men:["Oversized T-Shirt","Baggy Cargo Jeans","Senator Wear","Hoodie","Vintage Shirt","Two-Piece Set","Blazer","Joggers","Polo Shirt","Denim Jacket","Agbada","Kaftan","Sweatshirt","Check Shirt","Shorts","Corporate Shirt"],women:["Bodycon Gown","Ankara Gown","Crop Top + Skirt","Denim Jacket","Pleated Skirt","Maxi Gown","Jumpsuit","Cargo Trouser","Summer Dress","Blazer Set","Mini Dress","Palazzo Pant","Off-Shoulder Top","Sequin Gown","Wrap Dress","Bubu Gown"],kids:["Boys Set","Girls Dress","Kids Hoodie","Kids Jeans","Party Gown","Kids T-Shirt Pack","Kids Shorts","Kids Ankara Set"],shoes:["Nike Sneakers","Ladies Heels","White Sneakers","Men Loafers","Slides","Running Shoes","Ankle Boots","Sandals"],bags:["Ladies Handbag","Backpack","Cross Bag","Tote Bag","Mini Shoulder Bag","Travel Bag"],accessories:["Wrist Watch","Sunglasses","Face Cap","Necklace Set","Belt","Earrings Pack","Gold Chain","Bracelet"]};
 let colors=["Black","White","Red","Blue","Green","Pink","Brown","Beige","Yellow","Purple","Wine","Navy","Grey","Orange","Lilac"];
-let designs=["Classic","Floral","Plain","Striped","Vintage","Premium","Luxury","Casual","Elegant","Trending","Oversized","Slim Fit","Designer","Ankara Print","Denim Style","Crochet","Sequin","Embroidered","Pleated","Ruffled"];
-let sizes=["S","M","L","XL","XXL"];
+let designs=["Classic","Floral","Plain","Striped","Vintage","Premium","Luxury","Casual","Elegant","Trending","Oversized","Slim Fit","Designer","Ankara Print","Denim Style","Crochet","Sequin","Embroidered"];
 let colorHex={Black:"#000",White:"#fff",Red:"#e60000",Blue:"#0066ff",Green:"#00a651",Pink:"#FFC0CB",Brown:"#8B4513",Beige:"#E8DCC8",Yellow:"#FFD700",Purple:"#800080",Wine:"#722F37",Navy:"#000080",Grey:"#888",Orange:"#FF6600",Lilac:"#C8A2C8"};
-
-// GENERATE 12,000+ : 40 styles x 15 colours x 20 designs = 12,000
-let products=[];
-let idCounter=0;
-for(let s=0;s<baseStyles.length;s++){
-  for(let c=0;c<colors.length;c++){
-    for(let d=0;d<designs.length;d++){
-      // To keep 12,000 exactly, we take every combination but limit
-      if(idCounter>=12000) break;
-      let b=baseStyles[s];
-      let prefix=b.cat=="men"?"Men ":b.cat=="women"?"Ladies ":b.cat=="kids"?"Kids ":"";
-      let price=b.price + (c*200) + (d*150);
-      products.push({id:idCounter, name:prefix+b.name+" - "+colors[c]+" - "+designs[d]+" Style #"+(idCounter+1), cat:b.cat, img:b.img, price:price, old:price+6000, tag:["NEW","HOT","TRENDING","PREMIUM"][idCounter%4], colors: colors.slice(0,5), mainColor: colors[c]});
-      idCounter++;
-    }
-    if(idCounter>=12000) break;
-  }
-  if(idCounter>=12000) break;
-}
+let products=[];let id=0;let cats=["men","women","kids","shoes","bags","accessories"];
+while(products.length<12000){for(let ci=0;ci<cats.length;ci++){let cat=cats[ci];let name=NAMES[cat][(id*7+ci)%NAMES[cat].length];let imgId=IMG[cat][(id*13+ci*3)%IMG[cat].length];let color=colors[id%colors.length];let design=designs[(id*5)%designs.length];let base=cat=="men"?14000:cat=="women"?16000:cat=="kids"?10000:cat=="shoes"?20000:cat=="bags"?13000:9000;let price=base+(id%50)*100+(ci*300);let prefix=cat=="men"?"Men ":cat=="women"?"Ladies ":cat=="kids"?"Kids ":"";products.push({id:id,name:prefix+name+" - "+color+" "+design+" #"+(id+1),cat:cat,img:"https://images.unsplash.com/"+imgId+"?w=500",price:price,old:price+6000,tag:["NEW","HOT","TRENDING","PREMIUM"][id%4],colors:colors.slice(0,5),mainColor:color});id++;if(products.length>=12000)break;}}
 document.getElementById('totalCount').innerText=products.length.toLocaleString();
-
-let selected={}, cart=[], currentList=products, shown=0, PAGE=20;
-function renderMore(){
-  let slice=currentList.slice(shown, shown+PAGE);
-  shown+=slice.length;
-  document.getElementById('showing').innerText=shown.toLocaleString();
-  let html=slice.map(p=>{
-    if(!selected[p.id]) selected[p.id]=p.mainColor;
-    let dots=p.colors.map(c=>`<div class="color-dot ${selected[p.id]==c?'selected':''}" style="background:${colorHex[c]||'#ccc'}" onclick="pickColor(${p.id},'${c}',this)"></div>`).join('');
-    return `<div class="card"><img loading="lazy" src="${p.img}"><br><span class="badge">${p.tag}</span><h3>${p.name}</h3><small>Size: S, M, L, XL, XXL</small><div class="color-name">Colour: <b id="cn-${p.id}">${selected[p.id]}</b></div><div class="colors">${dots}</div><p>₦${p.price.toLocaleString()} <del>₦${p.old.toLocaleString()}</del></p><button class="add" onclick="addToCart(${p.id})">Add to Cart</button></div>`;
-  }).join('');
-  if(shown===PAGE) document.getElementById('products').innerHTML=html;
-  else document.getElementById('products').innerHTML+=html;
-  // Load More button
-  let oldBtn=document.getElementById('loadBtn'); if(oldBtn) oldBtn.remove();
-  if(shown<currentList.length){
-    document.getElementById('products').innerHTML+=`<div class="load"><button id="loadBtn" onclick="renderMore()">Load More Clothes (${(currentList.length-shown).toLocaleString()} remaining)</button></div>`;
-  }
-}
-function pickColor(id,color,el){selected[id]=color;let e=document.getElementById('cn-'+id); if(e) e.innerText=color; el.parentElement.querySelectorAll('.color-dot').forEach(d=>d.classList.remove('selected')); el.classList.add('selected');}
-function addToCart(id){let p=products.find(x=>x.id==id);let col=selected[id]||p.mainColor;let key=p.name+"|"+col;let f=cart.find(x=>x.key==key);if(f)f.qty++;else cart.push({key:key,name:p.name,color:col,price:p.price,img:p.img,qty:1});updateCart();alert(p.name+" ("+col+") added!");}
-function updateCart(){let t=cart.reduce((s,x)=>s+x.price*x.qty,0);let c=cart.reduce((s,x)=>s+x.qty,0);document.getElementById('count').innerText=c;document.getElementById('total').innerText=t.toLocaleString();renderCart();}
-function renderCart(){let total=cart.reduce((s,x)=>s+x.price*x.qty,0);let loc=document.getElementById('cLocation');let fee=loc?(loc.value=="PH"?2000:loc.value=="Other"?4500:3500):2000;document.getElementById('deliveryFee').innerText=fee.toLocaleString();document.getElementById('grandTotal').innerText=(total+fee).toLocaleString();if(cart.length==0){document.getElementById('cartList').innerHTML="<p>Cart empty</p>";document.getElementById('cartTotal').innerText="";return;}document.getElementById('cartList').innerHTML=cart.map((x,i)=>`<div class="cart-item"><img src="${x.img}"><div style="flex:1"><b style="font-size:12px">${x.name}</b><br><small>${x.color} | ₦${x.price.toLocaleString()}</small><br><div class="qty"><button onclick="changeQty(${i},-1)">-</button> ${x.qty} <button onclick="changeQty(${i},1)">+</button> <button onclick="removeItem(${i})" style="color:red;border:none;background:none">🗑</button></div></div><b>₦${(x.price*x.qty).toLocaleString()}</b></div>`).join('');document.getElementById('cartTotal').innerText="Subtotal: ₦"+total.toLocaleString();}
+let selected={},cart=[],currentList=products,shown=0,PAGE=30;
+function renderMore(){let slice=currentList.slice(shown,shown+PAGE);shown+=slice.length;document.getElementById('showing').innerText=shown.toLocaleString();let html=slice.map(p=>{if(!selected[p.id])selected[p.id]=p.mainColor;let dots=p.colors.map(c=>`<div class="color-dot ${selected[p.id]==c?'selected':''}" style="background:${colorHex[c]||'#ccc'}" onclick="pickColor(${p.id},'${c}',this)"></div>`).join('');return `<div class="card"><img loading="lazy" src="${p.img}"><br><span class="badge">${p.tag}</span><h3>${p.name}</h3><small>Size: S, M, L, XL, XXL</small><div class="color-name">Colour: <b id="cn-${p.id}">${selected[p.id]}</b></div><div class="colors">${dots}</div><p>₦${p.price.toLocaleString()} <del>₦${p.old.toLocaleString()}</del></p><button class="add" onclick="addToCart(${p.id})">Add to Cart</button></div>`}).join('');if(shown===PAGE)document.getElementById('products').innerHTML=html;else document.getElementById('products').innerHTML+=html;let old=document.getElementById('loadBtn');if(old)old.remove();if(shown<currentList.length)document.getElementById('products').innerHTML+=`<div class="load"><button id="loadBtn" onclick="renderMore()">Load More (${(currentList.length-shown).toLocaleString()} remaining)</button></div>`;}
+function pickColor(id,color,el){selected[id]=color;let e=document.getElementById('cn-'+id);if(e)e.innerText=color;el.parentElement.querySelectorAll('.color-dot').forEach(d=>d.classList.remove('selected'));el.classList.add('selected');}
+function addToCart(id){let p=products.find(x=>x.id==id);let col=selected[id]||p.mainColor;let key=p.name+"|"+col;let f=cart.find(x=>x.key==key);if(f)f.qty++;else cart.push({key:key,name:p.name,color:col,price:p.price,img:p.img,qty:1});updateCart();alert(p.name+" ("+col+") added! Total now: ₦"+cart.reduce((s,x)=>s+x.price*x.qty,0).toLocaleString());}
+function getTotals(){let sub=cart.reduce((s,x)=>s+x.price*x.qty,0);let count=cart.reduce((s,x)=>s+x.qty,0);let fee=document.getElementById('cLocation')? (document.getElementById('cLocation').value=="PH"?2000:document.getElementById('cLocation').value=="Other"?4500:3500):2000;return {sub,count,fee,grand:sub+fee};}
+function updateCart(){let t=getTotals();document.getElementById('count').innerText=t.count;document.getElementById('total').innerText=t.sub.toLocaleString();renderCart();}
+function renderCart(){let t=getTotals();document.getElementById('subTotal').innerText=t.sub.toLocaleString();document.getElementById('deliveryFee').innerText=t.fee.toLocaleString();document.getElementById('grandTotal').innerText=t.grand.toLocaleString();document.getElementById('payBtnTotal').innerText=t.grand.toLocaleString();document.getElementById('itemCount').innerText=t.count;if(cart.length==0){document.getElementById('cartList').innerHTML="<p>Cart empty - Add items first</p>";return;}document.getElementById('cartList').innerHTML=cart.map((x,i)=>`<div class="cart-item"><img src="${x.img}"><div style="flex:1"><b style="font-size:12px">${x.name}</b><br><small>${x.color} | ₦${x.price.toLocaleString()} each</small><br><div class="qty"><button onclick="changeQty(${i},-1)">-</button> ${x.qty} <button onclick="changeQty(${i},1)">+</button> <button onclick="removeItem(${i})" style="color:red;border:none;background:none">🗑 Remove</button></div></div><b>₦${(x.price*x.qty).toLocaleString()}</b></div>`).join('');}
 function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);updateCart();}
 function removeItem(i){cart.splice(i,1);updateCart();}
 function openCart(){renderCart();document.getElementById('cartModal').style.display='block';}
 function closeCart(){document.getElementById('cartModal').style.display='none';}
-document.getElementById('cLocation').addEventListener('change',renderCart);
 function filterCat(c,btn){document.querySelectorAll('.cat button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentList=c=='all'?products:products.filter(p=>p.cat==c);shown=0;renderMore();}
 function searchP(){let q=document.getElementById('search').value.toLowerCase();currentList=q?products.filter(p=>p.name.toLowerCase().includes(q)):products;shown=0;renderMore();}
-function checkoutWhatsApp(){if(cart.length==0){alert("Cart empty");return;}let total=cart.reduce((s,x)=>s+x.price*x.qty,0);let msg="Hello Fashion Hub, I want to order: "+cart.map(x=>x.name+" ("+x.color+") x"+x.qty).join(", ")+" Total: ₦"+total.toLocaleString();window.open("https://wa.me/2349037002209?text="+encodeURIComponent(msg));}
-function payWithPaystack(){if(cart.length==0){alert("Cart empty");return;}let name=document.getElementById('cName').value,email=document.getElementById('cEmail').value,phone=document.getElementById('cPhone').value,addr=document.getElementById('cAddress').value;if(!name||!email||!phone||!addr){alert("Fill Name, Phone, Email, Address");return;}if(PAYSTACK_KEY.includes("xxxxxxxx")){alert("Put your Paystack Public Key for code first! Replace pk_test_xxxxxxxx");return;}let sub=cart.reduce((s,x)=>s+x.price*x.qty,0);let fee=document.getElementById('cLocation').value=="PH"?2000:document.getElementById('cLocation').value=="Other"?4500:3500;let grand=sub+fee;let h=PaystackPop.setup({key:PAYSTACK_KEY,email:email,amount:grand*100,currency:"NGN",ref:"FH-"+Math.floor(Math.random()*1000000000),metadata:{custom_fields:[{display_name:"Name",variable_name:"name",value:name},{display_name:"Phone",variable_name:"phone",value:phone},{display_name:"Address",variable_name:"address",value:addr},{display_name:"Order",variable_name:"order",value:cart.map(x=>x.name+" ("+x.color+") x"+x.qty).join(", ")}]},callback:function(res){alert("Payment Successful! Ref: "+res.reference);let msg="NEW PAID ORDER! Ref: "+res.reference+" Name: "+name+" Phone: "+phone+" Address: "+addr+" Order: "+cart.map(x=>x.name+" ("+x.color+") x"+x.qty).join(", ")+" Total: ₦"+grand.toLocaleString();window.open("https://wa.me/2349037002209?text="+encodeURIComponent(msg));cart=[];updateCart();closeCart();},onClose:function(){alert("Payment cancelled");}});h.openIframe();}
+function checkoutWhatsApp(){if(cart.length==0){alert("Cart empty");return;}let t=getTotals();let msg="Hello Fashion Hub, I want to order: "+cart.map(x=>x.name+" ("+x.color+") x"+x.qty).join(", ")+" Subtotal: ₦"+t.sub.toLocaleString()+" Delivery: ₦"+t.fee.toLocaleString()+" TOTAL: ₦"+t.grand.toLocaleString();window.open("https://wa.me/2349037002209?text="+encodeURIComponent(msg));}
+function payWithPaystack(){if(cart.length==0){alert("Cart empty");return;}let name=document.getElementById('cName').value,email=document.getElementById('cEmail').value,phone=document.getElementById('cPhone').value,addr=document.getElementById('cAddress').value;if(!name||!email||!phone||!addr){alert("Fill Name, Phone, Email, Address first");return;}let t=getTotals();let h=PaystackPop.setup({key:PAYSTACK_KEY,email:email,amount:t.grand*100,currency:"NGN",ref:"FH-"+Math.floor(Math.random()*1000000000),metadata:{custom_fields:[{display_name:"Name",variable_name:"name",value:name},{display_name:"Phone",variable_name:"phone",value:phone},{display_name:"Address",variable_name:"address",value:addr},{display_name:"Order",variable_name:"order",value:cart.map(x=>x.name+" ("+x.color+") x"+x.qty).join(", ")}]},callback:function(res){alert("✅ Payment Successful! Ref: "+res.reference+" Money don enter your Paystack!");let msg="NEW PAID ORDER! Ref: "+res.reference+" Name: "+name+" Phone: "+phone+" Address: "+addr+" Order: "+cart.map(x=>x.name+" ("+x.color+") x"+x.qty).join(", ")+" TOTAL PAID: ₦"+t.grand.toLocaleString();window.open("https://wa.me/2349037002209?text="+encodeURIComponent(msg));cart=[];updateCart();closeCart();},onClose:function(){alert("Payment cancelled");}});h.openIframe();}
 renderMore();
 </script>
 </body>
