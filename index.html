@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fashion Hub - Buy Clothes</title>
+<style>
+body{font-family:Arial;margin:0;background:#fff5f0}
+header{background:#000;color:#fff;padding:18px;text-align:center}
+header h1{margin:0;font-size:24px}
+header p{margin:5px;color:#ffcc00}
+.search{padding:12px;text-align:center;background:#fff}
+.search input{width:85%;padding:12px;border:1px solid #ddd;border-radius:25px}
+.cat{padding:10px;text-align:center}
+.cat button{padding:9px 16px;margin:3px;border:none;border-radius:20px;background:#000;color:#fff}
+.cat button.active{background:#ff6600}
+.products{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px;padding-bottom:110px}
+.card{background:#fff;border-radius:12px;padding:10px;text-align:center}
+.card img{width:100%;height:160px;object-fit:cover;border-radius:10px}
+.card h3{font-size:15px;margin:8px 0 2px}
+.card p{color:#e60000;font-weight:bold;margin:4px}
+.card del{color:#999;font-size:12px}
+.card button{background:#ff6600;color:#fff;border:none;padding:9px;width:100%;border-radius:20px;font-weight:bold}
+.cart{position:fixed;bottom:0;left:0;right:0;background:#000;color:#fff;padding:14px;text-align:center}
+.cart button{background:#ffcc00;border:none;padding:11px 22px;border-radius:20px;font-weight:bold}
+</style>
+</head>
+<body>
+<header><h1>👗 FASHION HUB</h1><p>Buy Quality Clothes | Port Harcourt | Delivery Nationwide</p><p>📞 WhatsApp: 09037002209</p></header>
+<div class="search"><input type="text" id="search" placeholder="Search... e.g. gown, jeans, shirt" onkeyup="searchP()"></div>
+<div class="cat">
+<button onclick="filterCat('all',this)" class="active">All</button>
+<button onclick="filterCat('men',this)">Men</button>
+<button onclick="filterCat('women',this)">Women</button>
+<button onclick="filterCat('kids',this)">Kids</button>
+<button onclick="filterCat('shoes',this)">Shoes</button>
+</div>
+<div class="products" id="products"></div>
+<div class="cart">🛒 <span id="count">0</span> items | ₦<span id="total">0</span><button onclick="checkout()">CHECKOUT ON WHATSAPP</button></div>
+<script>
+let products=[
+{name:"Men T-Shirt",price:8000,old:12000,cat:"men",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500"},
+{name:"Men Jeans",price:15000,old:20000,cat:"men",img:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=500"},
+{name:"Men Shirt",price:12000,old:16000,cat:"men",img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500"},
+{name:"Men Hoodie",price:18000,old:25000,cat:"men",img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500"},
+{name:"Ladies Gown",price:18000,old:25000,cat:"women",img:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500"},
+{name:"Ladies Top",price:9000,old:13000,cat:"women",img:"https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=500"},
+{name:"Ladies Skirt",price:11000,old:15000,cat:"women",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500"},
+{name:"Ladies Bag",price:14000,old:19000,cat:"women",img:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500"},
+{name:"Kids Wear Set",price:10000,old:14000,cat:"kids",img:"https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=500"},
+{name:"Kids Dress",price:9000,old:12000,cat:"kids",img:"https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=500"},
+{name:"Sneakers",price:25000,old:32000,cat:"shoes",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"},
+{name:"Heels",price:20000,old:28000,cat:"shoes",img:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500"},
+];
+let cart=[], total=0;
+function show(list){document.getElementById('products').innerHTML=list.map(p=>`<div class="card"><img src="${p.img}"><h3>${p.name}</h3><small>Size: S, M, L, XL</small><p>₦${p.price.toLocaleString()} <del>₦${p.old.toLocaleString()}</del></p><button onclick="add(${p.price},'${p.name}')">Add to Cart</button></div>`).join('');}
+function add(price,name){cart.push(name);total+=price;document.getElementById('count').innerText=cart.length;document.getElementById('total').innerText=total.toLocaleString();alert(name+" added!")}
+function filterCat(c,btn){document.querySelectorAll('.cat button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');show(c=='all'?products:products.filter(p=>p.cat==c));}
+function searchP(){let q=document.getElementById('search').value.toLowerCase();show(products.filter(p=>p.name.toLowerCase().includes(q)))}
+function checkout(){if(cart.length==0){alert("Cart empty!");return;}let msg="Hello Fashion Hub, I want to order: "+cart.join(", ")+" Total: ₦"+total.toLocaleString();window.open("https://wa.me/2349037002209?text="+encodeURIComponent(msg));}
+show(products);
+</script>
+</body>
+  </html>
