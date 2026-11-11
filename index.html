@@ -2,62 +2,106 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fashion Hub - Buy Clothes</title>
+<title>Fashion Hub - Choose Your Colour</title>
 <style>
 body{font-family:Arial;margin:0;background:#fff5f0}
-header{background:#000;color:#fff;padding:18px;text-align:center}
+header{background:#000;color:#fff;padding:16px;text-align:center;position:sticky;top:0;z-index:10}
 header h1{margin:0;font-size:24px}
-header p{margin:5px;color:#ffcc00}
-.search{padding:12px;text-align:center;background:#fff}
-.search input{width:85%;padding:12px;border:1px solid #ddd;border-radius:25px}
-.cat{padding:10px;text-align:center}
-.cat button{padding:9px 16px;margin:3px;border:none;border-radius:20px;background:#000;color:#fff}
+header p{margin:4px;color:#ffcc00;font-size:13px}
+.search{padding:10px;text-align:center;background:#fff}
+.search input{width:92%;padding:12px;border:1px solid #ddd;border-radius:25px}
+.cat{padding:10px;text-align:center;overflow-x:auto;white-space:nowrap}
+.cat button{padding:9px 14px;margin:3px;border:none;border-radius:20px;background:#000;color:#fff;font-size:13px}
 .cat button.active{background:#ff6600}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px;padding-bottom:110px}
-.card{background:#fff;border-radius:12px;padding:10px;text-align:center}
-.card img{width:100%;height:160px;object-fit:cover;border-radius:10px}
-.card h3{font-size:15px;margin:8px 0 2px}
+.products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;padding-bottom:130px}
+.card{background:#fff;border-radius:12px;padding:9px;text-align:center}
+.card img{width:100%;height:170px;object-fit:cover;border-radius:10px}
+.card h3{font-size:13px;margin:7px 0 2px}
+.badge{background:#ff6600;color:#fff;font-size:10px;padding:3px 8px;border-radius:10px}
 .card p{color:#e60000;font-weight:bold;margin:4px}
-.card del{color:#999;font-size:12px}
-.card button{background:#ff6600;color:#fff;border:none;padding:9px;width:100%;border-radius:20px;font-weight:bold}
-.cart{position:fixed;bottom:0;left:0;right:0;background:#000;color:#fff;padding:14px;text-align:center}
-.cart button{background:#ffcc00;border:none;padding:11px 22px;border-radius:20px;font-weight:bold}
+.card del{color:#999;font-size:11px}
+.colors{display:flex;justify-content:center;gap:5px;margin:6px 0;flex-wrap:wrap}
+.color-dot{width:26px;height:26px;border-radius:50%;border:2px solid #ddd;cursor:pointer}
+.color-dot.selected{border:3px solid #000;transform:scale(1.15)}
+.color-name{font-size:11px;color:#555;margin:2px}
+.card button.add{background:#000;color:#fff;border:none;padding:9px;width:100%;border-radius:20px;font-weight:bold}
+.cart{position:fixed;bottom:0;left:0;right:0;background:#000;color:#fff;padding:13px;text-align:center;font-size:14px}
+.cart button{background:#ffcc00;border:none;padding:11px 18px;border-radius:20px;font-weight:bold}
 </style>
 </head>
 <body>
-<header><h1>👗 FASHION HUB</h1><p>Buy Quality Clothes | Port Harcourt | Delivery Nationwide</p><p>📞 WhatsApp: 09037002209</p></header>
-<div class="search"><input type="text" id="search" placeholder="Search... e.g. gown, jeans, shirt" onkeyup="searchP()"></div>
+<header><h1>👗 FASHION HUB</h1><p>🔥 120+ LATEST 2026 | Choose Your Colour | Port Harcourt</p><p>📞 WhatsApp: 09037002209</p></header>
+<div class="search"><input type="text" id="search" placeholder="Search... gown, cargo, hoodie, ankara" onkeyup="searchP()"></div>
 <div class="cat">
 <button onclick="filterCat('all',this)" class="active">All</button>
 <button onclick="filterCat('men',this)">Men</button>
 <button onclick="filterCat('women',this)">Women</button>
 <button onclick="filterCat('kids',this)">Kids</button>
 <button onclick="filterCat('shoes',this)">Shoes</button>
+<button onclick="filterCat('bags',this)">Bags</button>
+<button onclick="filterCat('accessories',this)">Accessories</button>
 </div>
 <div class="products" id="products"></div>
-<div class="cart">🛒 <span id="count">0</span> items | ₦<span id="total">0</span><button onclick="checkout()">CHECKOUT ON WHATSAPP</button></div>
+<div class="cart">🛒 <span id="count">0</span> | ₦<span id="total">0</span> <button onclick="checkout()">CHECKOUT ON WHATSAPP</button></div>
 <script>
-let products=[
-{name:"Men T-Shirt",price:8000,old:12000,cat:"men",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500"},
-{name:"Men Jeans",price:15000,old:20000,cat:"men",img:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=500"},
-{name:"Men Shirt",price:12000,old:16000,cat:"men",img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500"},
-{name:"Men Hoodie",price:18000,old:25000,cat:"men",img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500"},
-{name:"Ladies Gown",price:18000,old:25000,cat:"women",img:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500"},
-{name:"Ladies Top",price:9000,old:13000,cat:"women",img:"https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=500"},
-{name:"Ladies Skirt",price:11000,old:15000,cat:"women",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500"},
-{name:"Ladies Bag",price:14000,old:19000,cat:"women",img:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500"},
-{name:"Kids Wear Set",price:10000,old:14000,cat:"kids",img:"https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=500"},
-{name:"Kids Dress",price:9000,old:12000,cat:"kids",img:"https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=500"},
-{name:"Sneakers",price:25000,old:32000,cat:"shoes",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"},
-{name:"Heels",price:20000,old:28000,cat:"shoes",img:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500"},
+let base=[
+{name:"Oversized T-Shirt",cat:"men",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500",price:9500,colors:["Black","White","Red","Blue","Green"]},
+{name:"Baggy Cargo Jeans",cat:"men",img:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=500",price:18000,colors:["Black","Blue","Brown","Grey"]},
+{name:"Senator Wear",cat:"men",img:"https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500",price:25000,colors:["Black","White","Wine","Navy","Beige"]},
+{name:"Hoodie",cat:"men",img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500",price:19000,colors:["Black","Grey","Blue","Brown","White"]},
+{name:"Vintage Shirt",cat:"men",img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500",price:13500,colors:["White","Blue","Brown","Black"]},
+{name:"Two-Piece Set",cat:"men",img:"https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500",price:22000,colors:["Black","Beige","Olive","White"]},
+{name:"Blazer",cat:"men",img:"https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500",price:28000,colors:["Black","Navy","Grey","Brown"]},
+{name:"Joggers",cat:"men",img:"https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=500",price:15000,colors:["Black","Grey","Olive","Blue"]},
+{name:"Polo Shirt",cat:"men",img:"https://images.unsplash.com/photo-1626497764746-6dc36546b388?w=500",price:11000,colors:["White","Black","Red","Blue","Yellow"]},
+{name:"Denim Jacket",cat:"men",img:"https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=500",price:20000,colors:["Blue","Black","Light Blue"]},
+{name:"Bodycon Gown",cat:"women",img:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500",price:19000,colors:["Black","Red","Pink","White","Wine"]},
+{name:"Ankara Gown",cat:"women",img:"https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500",price:22000,colors:["Multi","Yellow","Green","Red"]},
+{name:"Crop Top + Skirt",cat:"women",img:"https://images.unsplash.com/photo-1551163943-3f6a855d1153?w=500",price:14000,colors:["White","Black","Pink","Lilac"]},
+{name:"Denim Jacket",cat:"women",img:"https://images.unsplash.com/photo-1551537482-c6e64d1b6b4c?w=500",price:17000,colors:["Blue","Black","White"]},
+{name:"Pleated Skirt",cat:"women",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500",price:11500,colors:["Black","Beige","Pink","Brown"]},
+{name:"Maxi Gown",cat:"women",img:"https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500",price:23000,colors:["Red","Blue","White","Black","Yellow"]},
+{name:"Jumpsuit",cat:"women",img:"https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500",price:21000,colors:["Black","Pink","Green","White"]},
+{name:"Cargo Trouser",cat:"women",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500",price:14500,colors:["Black","Khaki","Olive","Brown"]},
+{name:"Summer Dress",cat:"women",img:"https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500",price:16000,colors:["White","Yellow","Pink","Blue"]},
+{name:"Blazer Set",cat:"women",img:"https://images.unsplash.com/photo-1544441893-675973e31985?w=500",price:26000,colors:["Black","Pink","Beige","White"]},
+{name:"Boys Set",cat:"kids",img:"https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=500",price:11000,colors:["Blue","Red","Green","Yellow"]},
+{name:"Girls Dress",cat:"kids",img:"https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=500",price:10000,colors:["Pink","White","Red","Purple"]},
+{name:"Kids Hoodie",cat:"kids",img:"https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=500",price:12000,colors:["Blue","Pink","Yellow","Grey"]},
+{name:"Kids Jeans",cat:"kids",img:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=500",price:9500,colors:["Blue","Black"]},
+{name:"Party Gown",cat:"kids",img:"https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=500",price:15000,colors:["Pink","White","Red","Purple"]},
+{name:"Nike Sneakers",cat:"shoes",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500",price:28000,colors:["Red","Black","White","Blue"]},
+{name:"Heels",cat:"shoes",img:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500",price:21000,colors:["Black","Nude","Red","White"]},
+{name:"White Sneakers",cat:"shoes",img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500",price:24000,colors:["White","Black","Beige"]},
+{name:"Loafers",cat:"shoes",img:"https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=500",price:23000,colors:["Black","Brown","White"]},
+{name:"Slides",cat:"shoes",img:"https://images.unsplash.com/photo-1603487742131-4160ec999306?w=500",price:8000,colors:["Black","White","Pink","Blue"]},
+{name:"Handbag",cat:"bags",img:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500",price:15000,colors:["Black","Brown","White","Pink","Red"]},
+{name:"Backpack",cat:"bags",img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",price:16000,colors:["Black","Blue","Grey","Green"]},
+{name:"Cross Bag",cat:"bags",img:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500",price:12000,colors:["Black","Brown","White","Pink"]},
+{name:"Tote Bag",cat:"bags",img:"https://images.unsplash.com/photo-1591561954557-26941169b49e?w=500",price:11000,colors:["Black","Beige","White","Brown"]},
+{name:"Wrist Watch",cat:"accessories",img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500",price:18000,colors:["Black","Silver","Gold","Brown"]},
+{name:"Sunglasses",cat:"accessories",img:"https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500",price:8000,colors:["Black","Brown","Gold"]},
+{name:"Face Cap",cat:"accessories",img:"https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=500",price:7000,colors:["Black","White","Red","Blue"]},
+{name:"Necklace Set",cat:"accessories",img:"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500",price:9000,colors:["Gold","Silver","Rose Gold"]},
 ];
+let products=base.map((b,i)=>({...b, old:b.price+6000, tag:["NEW","HOT","TRENDING","PREMIUM"][i%4], id:i}));
+let selected={};
+let colorHex={Black:"#000",White:"#fff",Red:"#e60000",Blue:"#0066ff",Green:"#00a651",Brown:"#8B4513",Grey:"#888",Beige:"#E8DCC8",Pink:"#FFC0CB",Wine:"#722F37",Navy:"#000080",Olive:"#808000",Yellow:"#FFD700",Purple:"#800080",Lilac:"#C8A2C8",Khaki:"#C3B091",Nude:"#E3BC9A",Gold:"#FFD700",Silver:"#C0C0C0","Rose Gold":"#E0BF8C","Light Blue":"#ADD8E6",Multi:"linear-gradient(45deg,red,yellow,green,blue)"};
+function colorStyle(c){let h=colorHex[c]||"#ccc"; if(h.includes("gradient")) return `background:${h}`; return `background:${h}`;}
 let cart=[], total=0;
-function show(list){document.getElementById('products').innerHTML=list.map(p=>`<div class="card"><img src="${p.img}"><h3>${p.name}</h3><small>Size: S, M, L, XL</small><p>₦${p.price.toLocaleString()} <del>₦${p.old.toLocaleString()}</del></p><button onclick="add(${p.price},'${p.name}')">Add to Cart</button></div>`).join('');}
-function add(price,name){cart.push(name);total+=price;document.getElementById('count').innerText=cart.length;document.getElementById('total').innerText=total.toLocaleString();alert(name+" added!")}
+function show(list){
+  document.getElementById('products').innerHTML=list.map(p=>{
+    if(!selected[p.id]) selected[p.id]=p.colors[0];
+    let dots=p.colors.map(c=>`<div class="color-dot ${selected[p.id]==c?'selected':''}" style="${colorStyle(c)}" onclick="pickColor(${p.id},'${c}',this)"></div>`).join('');
+    return `<div class="card"><img src="${p.img}"><br><span class="badge">${p.tag}</span><h3>${p.name}</h3><small>Size: S, M, L, XL, XXL</small><div class="color-name">Colour: <b id="cn-${p.id}">${selected[p.id]}</b></div><div class="colors">${dots}</div><p>₦${p.price.toLocaleString()} <del>₦${p.old.toLocaleString()}</del></p><button class="add" onclick="add(${p.price},'${p.name}',${p.id})">Add to Cart</button></div>`
+  }).join('');
+}
+function pickColor(id,color,el){ selected[id]=color; document.getElementById('cn-'+id).innerText=color; el.parentElement.querySelectorAll('.color-dot').forEach(d=>d.classList.remove('selected')); el.classList.add('selected'); }
+function add(price,name,id){let col=selected[id]||"Black"; cart.push(name+" ("+col+")"); total+=price; document.getElementById('count').innerText=cart.length; document.getElementById('total').innerText=total.toLocaleString(); alert(name+" - "+col+" added!"); }
 function filterCat(c,btn){document.querySelectorAll('.cat button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');show(c=='all'?products:products.filter(p=>p.cat==c));}
 function searchP(){let q=document.getElementById('search').value.toLowerCase();show(products.filter(p=>p.name.toLowerCase().includes(q)))}
 function checkout(){if(cart.length==0){alert("Cart empty!");return;}let msg="Hello Fashion Hub, I want to order: "+cart.join(", ")+" Total: ₦"+total.toLocaleString();window.open("https://wa.me/2349037002209?text="+encodeURIComponent(msg));}
 show(products);
 </script>
 </body>
-  </html>
+</html>
