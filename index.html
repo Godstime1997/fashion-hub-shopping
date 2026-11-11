@@ -175,3 +175,8 @@ function filterCat(c,btn){document.querySelectorAll('.cat button').forEach(b=>b.
 function searchP(){let q=document.getElementById('search').value.toLowerCase();currentList=q?products.filter(p=>p.name.toLowerCase().includes(q)):products;show(currentList);}
 function checkoutWhatsApp(){if(cart.length==0){alert("Cart empty");return;}let t=getTotals();let msg="Hello Fashion Hub, I want: "+cart.map(x=>x.name+" ("+x.color+") x"+x.qty).join(", ")+" TOTAL: ₦"+t.grand.toLocaleString();window.open("https://wa.me/2349037002209?text="+encodeURIComponent(msg));}
 function payWithPaystack(){if(cart.length==0){alert("Cart empty");return;}let name=document.getElementById('cName').value,email=document.getElementById('cEmail').value,phone=document.getElementById(
+show(products);
+</script>
+</body>
+</html>
+                           
