@@ -2,125 +2,127 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fashion Hub - All Brands</title>
-<script src="https://js.paystack.co/v1/inline.js"></script>
+<title>Fashion Hub - Spin & Win</title>
 <style>
-body{font-family:Arial;margin:0;background:#f5f5f5}header{background:#fff;padding:10px;position:sticky;top:0;z-index:20}.logo{font-size:24px;font-weight:900}.logo span{color:#fb7701}.search{display:flex;gap:6px;margin:10px 0}.search input{flex:1;padding:12px;border:2px solid #fb7701;border-radius:25px}.search button{background:#fb7701;color:#fff;border:none;padding:0 15px;border-radius:25px;font-weight:bold}.cat{display:flex;gap:8px;overflow-x:auto;padding-bottom:5px}.cat button{white-space:nowrap;border:none;background:#fff2e6;padding:8px 14px;border-radius:20px;font-weight:bold}.cat button.active{background:#000;color:#fff}.brand-bar{display:flex;gap:10px;overflow-x:auto;padding:10px}.brand{min-width:85px;text-align:center;background:#fff;border-radius:14px;padding:10px 5px;cursor:pointer;border:2px solid #eee}.brand.active{border:2px solid #fb7701;background:#fff2e6}.brand b{font-size:12px}.brand small{font-size:11px;color:#888}.banner{background:#000;color:#fff;margin:0 10px 10px;border-radius:14px;padding:16px}.products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px 140px}.card{background:#fff;border-radius:12px;overflow:hidden;cursor:pointer}.card img{width:100%;height:195px;object-fit:cover}.card-body{padding:9px}.card h3{font-size:13px;margin:0;min-height:32px}.brand-tag{background:#000;color:#fff;font-size:10px;padding:3px 7px;border-radius:10px;font-weight:bold}.price{color:#e60000;font-weight:900}.price del{color:#999;font-size:11px}.add{background:#fb7701;color:#fff;border:none;padding:8px;width:100%;border-radius:20px;font-weight:bold;margin-top:6px}.cart-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:10px;display:flex;justify-content:space-between;box-shadow:0 -3px 15px rgba(0,0,0,.15);z-index:30}.cart-bar button{background:#fb7701;color:#fff;border:none;padding:11px 14px;border-radius:25px;font-weight:bold}.cart-bar button.pay{background:#00c853}.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.8);overflow-y:auto;z-index:50}.box{background:#fff;margin:10px;border-radius:18px;padding:14px}.detail-img{width:100%;height:340px;object-fit:cover;border-radius:14px}.col-row{display:flex;gap:10px;flex-wrap:wrap}.col-item{text-align:center;cursor:pointer}.col-dot{width:52px;height:52px;border-radius:50%;border:3px solid #ddd}.col-item.sel .col-dot{border:4px solid #000}.size-row{display:flex;gap:8px;flex-wrap:wrap}.sz{padding:11px 18px;border:2px solid #ddd;border-radius:25px;font-weight:bold;background:#fff}.sz.sel{background:#000;color:#fff}.add-big{background:#fb7701;color:#fff;border:none;padding:16px;width:100%;border-radius:25px;font-weight:bold;font-size:18px}.buy-big{background:#00c853;color:#fff;border:none;padding:16px;width:100%;border-radius:25px;font-weight:bold;font-size:18px;margin-top:8px}.close-btn{background:#000;color:#fff;border:none;padding:9px 16px;border-radius:20px;float:right}input,select{width:100%;padding:13px;margin:6px 0;border:1px solid #ddd;border-radius:10px;box-sizing:border-box}.grand{background:#000;color:#fff;padding:11px;border-radius:10px;text-align:center;font-size:19px}.pay-btn{background:#00c853;color:#fff;border:none;padding:16px;width:100%;border-radius:12px;font-weight:bold;font-size:18px}.wa-btn{background:#25D366;color:#fff;border:none;padding:13px;width:100%;border-radius:12px;font-weight:bold;margin-top:8px}.sec{padding:5px 10px;font-weight:900;font-size:16px}
+body{font-family:Arial;margin:0;background:#111;color:#fff;text-align:center}
+.top{background:#fb7701;padding:12px;font-weight:900;font-size:20px}
+.top span{color:#000}
+h1{margin:10px 0 0;font-size:26px}
+p{color:#ccc;font-size:14px}
+.wheel-wrap{position:relative;width:310px;height:310px;margin:15px auto}
+#wheel{width:310px;height:310px;border-radius:50%;border:8px solid #fff;transition:transform 4s cubic-bezier(.17,.67,.21,1);position:relative;overflow:hidden;background:#000}
+.seg{position:absolute;width:50%;height:50%;top:0;left:50%;transform-origin:0 100%;display:flex;align-items:flex-start;justify-content:center;padding-top:18px;font-weight:900;font-size:13px;color:#fff;text-align:center}
+.pointer{position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-size:42px;z-index:10}
+#spinBtn{background:#fb7701;color:#fff;border:none;padding:16px 40px;border-radius:30px;font-size:20px;font-weight:900;margin-top:10px}
+#spinBtn:disabled{background:#666}
+.result{background:#fff;color:#000;margin:15px;border-radius:16px;padding:16px;display:none}
+.result h2{margin:0;color:#e60000}
+.code{background:#000;color:#FFD700;padding:12px;border-radius:10px;font-size:22px;font-weight:900;letter-spacing:2px;margin:10px 0}
+.btn{border:none;padding:14px;width:100%;border-radius:12px;font-weight:bold;font-size:16px;margin-top:8px}
+.shop{background:#00c853;color:#fff}
+.wa{background:#25D366;color:#fff}
+.info{background:#222;margin:10px;border-radius:12px;padding:12px;font-size:13px;text-align:left}
+.info b{color:#FFD700}
 </style>
 </head>
 <body>
-<header><div style="display:flex;justify-content:space-between"><div class="logo">FASHION<span>HUB</span></div><div>🛒 <b id="headCount">0</b></div></div><div class="search"><input id="search" placeholder="Search ANY Brand: Polo, Nike, Gucci..." onkeyup="searchP()"><button onclick="searchP()">Search</button></div></header>
-<div class="sec">🏷️ SHOP BY BRAND - EVERYTHING</div>
-<div class="brand-bar" id="brandBar"></div>
-<div class="banner"><h2 style="margin:0" id="bannerTitle">🏷️ ALL BRANDS</h2><p id="totalP" style="margin:4px 0"></p></div>
-<div class="cat"><button onclick="filterCat('all',this)" class="active">All</button><button onclick="filterCat('male',this)">Male</button><button onclick="filterCat('female',this)">Female</button><button onclick="filterCat('office',this)">Office</button><button onclick="filterCat('christmas',this)">Christmas Kids</button><button onclick="filterCat('kidsshoes',this)">Kids Shoes</button><button onclick="filterCat('jewellery',this)">Jewellery</button><button onclick="filterCat('watch',this)">Watches</button><button onclick="filterCat('bags',this)">Bags</button><button onclick="filterCat('native',this)">Native</button></div>
-<div class="products" id="products"></div>
-<div class="cart-bar"><div>🛒 <b id="count">0</b><br><b>Total: ₦<span id="total">0</span></b></div><div><button onclick="openCart()">View Cart</button> <button class="pay" onclick="openCart()">Checkout</button></div></div>
-<div class="modal" id="detailModal"><div class="box"><button class="close-btn" onclick="closeDetail()">X Close</button><img id="dImg" class="detail-img" src=""><div id="dBrand" style="margin-top:8px"></div><h2 id="dName"></h2><div><span style="color:#e60000;font-size:22px;font-weight:900">₦<span id="dPrice"></span></span> <del id="dOld"></del></div><p id="dDesc" style="color:#666;font-size:13px"></p><div><b>Colour: <span id="dColorName"></span></b></div><div class="col-row" id="dColors" style="margin-top:8px"></div><div style="margin-top:14px"><b>Size: <span id="dSizeName"></span></b></div><div class="size-row" id="dSizes" style="margin-top:8px"></div><button class="add-big" style="margin-top:15px" onclick="addFromDetail()">🛒 ADD TO CART</button><button class="buy-big" onclick="buyNow()">⚡ BUY NOW</button></div></div>
-<div class="modal" id="cartModal"><div class="box"><button class="close-btn" onclick="closeCart()">X Close</button><h2>🛒 Your Cart</h2><div id="cartList"></div><p>Subtotal: ₦<b id="subTotal">0</b></p><p>Delivery: ₦<b id="deliveryFee">2,000</b></p><div class="grand">TOTAL: ₦<span id="grandTotal">0</span></div><br><input id="cName" placeholder="Full Name *"><input id="cPhone" placeholder="Phone *"><input id="cEmail" placeholder="Email *"><input id="cAddress" placeholder="Address *"><select id="cLocation" onchange="renderCart()"><option value="PH">Port Harcourt - ₦2,000</option><option value="Lagos">Lagos - ₦3,500</option><option value="Abuja">Abuja - ₦3,500</option><option value="Other">Other - ₦4,500</option></select><button class="pay-btn" onclick="payWithPaystack()">💳 PAY ₦<span id="payBtnTotal">0</span> NOW</button><button class="wa-btn" onclick="checkoutWhatsApp()">💬 WhatsApp Order</button></div></div>
+<div class="top">FASHION<span>HUB</span> 🎡 SPIN & WIN</div>
+<h1>Spin & Win Discount!</h1>
+<p>Spin once per day. Win discount, use am for shop!</p>
+<div class="wheel-wrap">
+<div class="pointer">🔻</div>
+<div id="wheel"></div>
+</div>
+<button id="spinBtn" onclick="spin()">🎡 SPIN NOW</button>
+<div class="result" id="result">
+<h2 id="winTitle">🎉 YOU WIN!</h2>
+<p id="winText"></p>
+<div class="code" id="winCode"></div>
+<p style="font-size:12px;color:#666">Screenshot this code or tap WhatsApp to claim</p>
+<button class="btn shop" onclick="goShop()">🛍️ SHOP NOW WITH DISCOUNT</button>
+<button class="btn wa" onclick="claimWA()">💬 CLAIM ON WHATSAPP</button>
+</div>
+<div class="info">
+<b>🏆 PRIZES:</b><br>
+🎉 50% OFF - Jackpot!<br>
+🎉 20% OFF<br>
+🎉 10% OFF<br>
+🎉 5% OFF<br>
+🚚 FREE DELIVERY<br>
+😢 Try Again
+</div>
 <script>
-var KEY="pk_live_522e90bc4d7ec45abe67ed9b807d7512a0d8ce5b";
-var C={Black:"#000",White:"#fff",Red:"#e60000",Blue:"#0066ff",Green:"#00a651",Pink:"#FFC0CB",Brown:"#8B4513",Beige:"#E8DCC8",Yellow:"#FFD700",Purple:"#800080",Wine:"#722F37",Navy:"#000080",Grey:"#888",Gold:"#FFD700",Silver:"#C0C0C0",Olive:"#808000",Khaki:"#C3B091"};
-var P=[],USED={};
-function add(brand,cat,name,price,img,cols){var k=brand+"|"+name;if(USED[k])return;USED[k]=1;P.push([brand,cat,name,price,img,cols]);}
-var IMGS=["photo-1521572163474-6864f9cf17ab","photo-1556821840-3a63f95609a7","photo-1542272604-787c3835535d","photo-1596755094514-f87e34085b2c","photo-1617137968427-85924c800a22","photo-1507679799987-c73779587ccf","photo-1602810318383-e386cc2a3ccf","photo-1595777457583-95e059d581b8","photo-1539109136881-3be0616acf4b","photo-1515372039744-b8f02a3ae446","photo-1531746020798-e6953c6e8e04","photo-1483985988355-763728e1935b","photo-1509631179647-0177331693ae","photo-1496747611176-843222e1e57c","photo-1524504388940-b1c1722653e1","photo-1529139574466-a303027c1d8b","photo-1542291026-7eec264c27ff","photo-1543163521-1bf539c55dd2","photo-1549298916-b41d501d3772","photo-1614252369475-531eba835eb1","photo-1603487742131-4160ec999306","photo-1560769629-975ec94e6a86","photo-1595950653106-6c9ebd614d3a","photo-1606107557195-0e29a4b5b4aa","photo-1584917865442-de89df76afd3","photo-1553062407-98eeb64c6a62","photo-1523275335684-37898b6baf30","photo-1515562141207-7a88fb7ce338","photo-1572635196237-14b3f281503f","photo-1610694955371-d4a3e0ce4b52","photo-1594938298603-c8148c4dae35","photo-1603252109303-2751441dd157","photo-1524592094714-0f0654e20314","photo-1523170335258-f5ed11844a49","photo-1611591437281-460bfbe1220a"];
-var n=0;function nextImg(){return IMGS[n++%IMGS.length];}
-var BRAND_DATA=[
-["POLO","male",5000,["Polo Shirt","Polo T-Shirt","Polo Hoodie","Polo Cap","Polo Trouser","Polo Gown","Polo Two-Piece","Polo Jacket"]],
-["NIKE","male",15000,["Nike Sneakers","Nike T-Shirt","Nike Hoodie","Nike Shorts","Nike Tracksuit","Nike Cap","Nike Joggers","Nike Slides"]],
-["ADIDAS","male",14000,["Adidas Sneakers","Adidas T-Shirt","Adidas Hoodie","Adidas Tracksuit","Adidas Cap","Adidas Slides"]],
-["PUMA","male",13000,["Puma Sneakers","Puma T-Shirt","Puma Hoodie","Puma Shorts","Puma Tracksuit"]],
-["REEBOK","male",12000,["Reebok Sneakers","Reebok T-Shirt","Reebok Hoodie"]],
-["LACOSTE","male",16000,["Lacoste Polo","Lacoste T-Shirt","Lacoste Cap","Lacoste Shirt"]],
-["TOMMY HILFIGER","male",18000,["Tommy Polo","Tommy Shirt","Tommy Hoodie","Tommy Jeans"]],
-["UNDER ARMOUR","male",14000,["Under Armour T-Shirt","Under Armour Hoodie","Under Armour Shorts"]],
-["NEW BALANCE","male",15000,["New Balance Sneakers","New Balance T-Shirt","New Balance Hoodie"]],
-["FILA","male",11000,["Fila Sneakers","Fila T-Shirt","Fila Hoodie"]],
-["VANS","male",12000,["Vans Sneakers","Vans T-Shirt","Vans Cap"]],
-["CONVERSE","male",11000,["Converse Sneakers","Converse T-Shirt","Converse Hoodie"]],
-["ZARA","female",5000,["Zara Gown","Zara Crop Top","Zara Skirt","Zara Blouse","Zara Maxi Dress","Zara Blazer","Zara Jumpsuit","Zara Two-Piece"]],
-["H&M","female",5000,["H&M Gown","H&M Top","H&M Jeans","H&M Dress","H&M Skirt","H&M T-Shirt"]],
-["SHEIN","female",5000,["Shein Gown","Shein Crop Top","Shein Skirt","Shein Dress","Shein Two-Piece","Shein Blouse"]],
-["BOOHOO","female",6000,["Boohoo Gown","Boohoo Dress","Boohoo Top","Boohoo Skirt"]],
-["PRETTYLITTLETHING","female",6000,["PLT Gown","PLT Dress","PLT Two-Piece","PLT Top"]],
-["FASHION NOVA","female",6000,["Nova Gown","Nova Bodycon","Nova Two-Piece","Nova Dress"]],
-["MANGO","female",8000,["Mango Gown","Mango Blouse","Mango Skirt","Mango Dress"]],
-["BERSHKA","female",7000,["Bershka Top","Bershka Jeans","Bershka Dress"]],
-["FOREVER 21","female",5000,["Forever21 Gown","Forever21 Top","Forever21 Dress"]],
-["RIVER ISLAND","female",8000,["River Island Gown","River Island Dress","River Island Top"]],
-  ["GUCCI","bags",25000,["Gucci Handbag","Gucci Bag","Gucci Necklace","Gucci Watch","Gucci Belt","Gucci Shoes"]],
-["LOUIS VUITTON","bags",35000,["LV Handbag","LV Bag","LV Wallet","LV Belt","LV Shoes"]],
-["CHANEL","bags",35000,["Chanel Handbag","Chanel Bag","Chanel Perfume","Chanel Earrings"]],
-["DIOR","female",30000,["Dior Gown","Dior Handbag","Dior Dress","Dior Earrings"]],
-["VERSACE","female",30000,["Versace Gown","Versace Dress","Versace Shirt"]],
-["PRADA","bags",32000,["Prada Handbag","Prada Bag","Prada Shoes"]],
-["BALENCIAGA","bags",30000,["Balenciaga Bag","Balenciaga Sneakers","Balenciaga Cap"]],
-["BURBERRY","male",28000,["Burberry Shirt","Burberry Jacket","Burberry Cap"]],
-["FENDI","bags",30000,["Fendi Handbag","Fendi Bag","Fendi Belt"]],
-["GIVENCHY","female",28000,["Givenchy Gown","Givenchy Dress","Givenchy Bag"]],
-["VALENTINO","female",28000,["Valentino Gown","Valentino Dress","Valentino Bag"]],
-["ROLEX","watch",35000,["Rolex Watch","Rolex Gold Watch","Rolex Silver Watch","Rolex Luxury Watch"]],
-["CARTIER","watch",40000,["Cartier Watch","Cartier Necklace","Cartier Bracelet","Cartier Ring"]],
-["CASIO","watch",12000,["Casio Digital Watch","Casio Watch","Casio Gold Watch"]],
-["G-SHOCK","watch",18000,["G-Shock Watch","G-Shock Sport Watch"]],
-["FOSSIL","watch",15000,["Fossil Watch","Fossil Leather Watch"]],
-["MICHAEL KORS","watch",20000,["MK Watch","MK Handbag","MK Wallet"]],
-["APPLE WATCH","watch",25000,["Apple Watch","Apple Watch Band"]],
-["SAMSUNG WATCH","watch",22000,["Samsung Watch","Samsung Watch Band"]],
-["DANIEL WELLINGTON","watch",14000,["DW Watch","DW Leather Watch"]],
-["PANDORA","jewellery",12000,["Pandora Bracelet","Pandora Necklace","Pandora Charm","Pandora Ring"]],
-["SWAROVSKI","jewellery",14000,["Swarovski Necklace","Swarovski Earrings","Swarovski Bracelet"]],
-["TIFFANY","jewellery",20000,["Tiffany Necklace","Tiffany Earrings","Tiffany Ring"]],
-["GOLDPLUS","jewellery",8000,["GoldPlus Necklace","GoldPlus Earrings","GoldPlus Bracelet","GoldPlus Bangles"]],
-["CHRISTMAS","christmas",5000,["Kids Christmas Gown","Santa Dress","Christmas Suit","Red Party Gown","Christmas Set","Santa Costume","Christmas Hoodie","Party Dress"]],
-["CORPORATE","office",18000,["Office Shirt","Office Blazer","Office Suit","Office Gown","Pencil Skirt","Office Trouser","Office Dress"]],
-["MARKS & SPENCER","office",15000,["M&S Office Shirt","M&S Office Gown","M&S Blazer"]],
-["NEXT","office",14000,["Next Office Shirt","Next Office Gown","Next Trouser"]],
-["ANKARA","native",22000,["Ankara Gown","Ankara Two-Piece","Ankara Skirt","Ankara Bubu","Ankara Shirt"]],
-["ASO-OKE","native",35000,["Aso-Oke Gown","Aso-Oke Agbada","Aso-Oke Set"]],
-["SENATOR","native",25000,["Senator Wear","Senator Set","Senator Shirt"]],
-["AGBADA","native",45000,["Agbada Grand","Agbada Set","Royal Agbada"]],
-["KAFTAN","native",28000,["Kaftan Men","Kaftan Women","Kaftan Set"]],
-["WANA SAMBO","native",30000,["Wana Gown","Wana Dress"]],
-["MAI ATAFO","native",32000,["Mai Atafo Suit","Mai Atafo Agbada"]],
-["DEOLA SAGOE","native",32000,["Deola Gown","Deola Dress"]],
-["CARTERS","kidsshoes",7000,["Carters Sneakers","Carters Sandals","Carters Boots"]],
-["NIKE KIDS","kidsshoes",9000,["Nike Kids Sneakers","Nike Kids Sandals","Nike Kids Slides"]],
-["ADIDAS KIDS","kidsshoes",9000,["Adidas Kids Sneakers","Adidas Kids Sandals"]],
-["ZARA KIDS","kidsshoes",8000,["Zara Kids Gown","Zara Kids Dress","Zara Kids Set"]]
+var prizes=[
+{label:"50% OFF",color:"#e60000",code:"FH50"},
+{label:"10% OFF",color:"#fb7701",code:"FH10"},
+{label:"TRY AGAIN",color:"#333",code:""},
+{label:"20% OFF",color:"#00a651",code:"FH20"},
+{label:"5% OFF",color:"#0066ff",code:"FH05"},
+{label:"FREE DELIVERY",color:"#800080",code:"FHFREE"},
+{label:"10% OFF",color:"#fb7701",code:"FH10"},
+{label:"TRY AGAIN",color:"#333",code:""}
 ];
-for(var b=0;b<BRAND_DATA.length;b++){var bd=BRAND_DATA[b];for(var i=0;i<bd[3].length;i++){add(bd[0],bd[1],bd[0]+" "+bd[3][i]+" #"+(i+1),bd[2]+(i*300),nextImg(),"Black,White,Red,Blue,Gold,Pink,Green,Navy");}}
-var BRANDS=["ALL"];for(var i=0;i<BRAND_DATA.length;i++){BRANDS.push(BRAND_DATA[i][0]);}
-var curBrand="ALL",curCat="all";
-function renderBrands(){var h="";for(var i=0;i<BRANDS.length;i++){var b=BRANDS[i];var cnt=b=="ALL"?P.length:P.filter(function(x){return x[0]==b}).length;h+='<div class="brand '+(b==curBrand?'active':'')+'" onclick="filterBrand(\''+b.replace(/\'/g,"\\'")+'\')"><div style="font-size:22px">'+(b=="POLO"?"👕":b=="NIKE"?"✔️":b=="GUCCI"?"💍":b=="ROLEX"?"⌚":b=="CHRISTMAS"?"🎄":b=="ZARA"?"👗":"🏷️")+'</div><b>'+b+'</b><br><small>'+cnt+' items</small></div>';}document.getElementById('brandBar').innerHTML=h;}
-function filterBrand(b){curBrand=b;renderBrands();document.getElementById('bannerTitle').innerText=b=="ALL"?"🏷️ ALL BRANDS - "+BRANDS.length+" BRANDS":"🏷️ "+b+" BRAND";applyFilters();}
-function applyFilters(){var list=[];for(var i=0;i<P.length;i++){if(curBrand!="ALL"&&P[i][0]!=curBrand)continue;if(curCat!="all"&&P[i][1]!=curCat)continue;list.push(P[i]);}cur=list;show(cur);}
-document.getElementById('totalP').innerText=P.length+" Products | "+BRANDS.length+" Brands | No Duplicate - Brand By Brand";
-var cart=[],cur=P,curIdx=0,curColor="Black",curSize="M",curImg="",page=0,pageSize=60;
-var SIZES=["S","M","L","XL","XXL"];
-function imgU(id){return "https://images.unsplash.com/"+id+"?w=600";}
-function colorImg(b,col){var m={Black:"&sat=-100",White:"&sat=-100",Red:"",Blue:"&hue=200",Green:"&hue=120",Pink:"&hue=320",Brown:"&hue=30",Beige:"&sat=-50",Yellow:"&hue=50",Purple:"&hue=270",Wine:"&hue=340",Navy:"&hue=230",Grey:"&sat=-100",Gold:"&hue=45",Silver:"&sat=-100",Olive:"&hue=80",Khaki:"&hue=45"};return imgU(b)+(m[col]||"");}
-function show(list){page=0;cur=list;renderList();}
-function renderList(){var end=Math.min(cur.length,(page+1)*pageSize);var h="";for(var i=0;i<end;i++){var p=cur[i];h+='<div class="card" onclick="openDetailByPos('+i+')"><img src="'+imgU(p[4])+'"><div class="card-body"><span class="brand-tag">'+p[0]+'</span><h3>'+p[2]+'</h3><div>⭐ 4.8</div><div><span class="price">₦'+p[3].toLocaleString()+'</span> <del>₦'+(p[3]+3000).toLocaleString()+'</del></div><button class="add" onclick="event.stopPropagation();openDetailByPos('+i+')">Tap To See Colours</button></div></div>';}document.getElementById('products').innerHTML=h+(cur.length>end?'<div style="grid-column:1/-1;text-align:center"><button onclick="loadMore()" style="background:#000;color:#fff;border:none;padding:14px 30px;border-radius:25px;font-weight:bold">Load More ↓</button></div>':'');}
-function loadMore(){page++;renderList();}
-function openDetailByPos(pos){var p=cur[pos];curIdx=P.indexOf(p);var cols=p[5].split(",");curColor=cols[0];curSize="M";curImg=colorImg(p[4],curColor);document.getElementById('dImg').src=curImg;document.getElementById('dBrand').innerHTML='<span class="brand-tag">'+p[0]+' BRAND</span>';document.getElementById('dName').innerText=p[2];document.getElementById('dPrice').innerText=p[3].toLocaleString();document.getElementById('dOld').innerText="₦"+(p[3]+3000).toLocaleString();document.getElementById('dDesc').innerText="Original "+p[0]+" Brand - "+p[2]+". Colours: "+p[5]+".";document.getElementById('dColorName').innerText=curColor;document.getElementById('dSizeName').innerText=curSize;var ch="";for(var i=0;i<cols.length;i++){ch+='<div class="col-item '+(i==0?'sel':'')+'" onclick="pickC(\''+cols[i]+'\',this)"><div class="col-dot" style="background:'+(C[cols[i]]||'#ccc')+'"></div><small>'+cols[i]+'</small></div>';}document.getElementById('dColors').innerHTML=ch;var sz="";for(var s=0;s<SIZES.length;s++){sz+='<div class="sz '+(SIZES[s]=='M'?'sel':'')+'" onclick="pickS(\''+SIZES[s]+'\',this)">'+SIZES[s]+'</div>';}document.getElementById('dSizes').innerHTML=sz;document.getElementById('detailModal').style.display='block';}
-function pickC(col,el){var p=P[curIdx];curColor=col;curImg=colorImg(p[4],col);document.getElementById('dImg').src=curImg;document.getElementById('dColorName').innerText=col;var a=document.querySelectorAll('#dColors .col-item');for(var i=0;i<a.length;i++)a[i].classList.remove('sel');el.classList.add('sel');}
-function pickS(sz,el){curSize=sz;document.getElementById('dSizeName').innerText=sz;var a=document.querySelectorAll('#dSizes .sz');for(var i=0;i<a.length;i++)a[i].classList.remove('sel');el.classList.add('sel');}
-function addFromDetail(){var p=P[curIdx];var key=p[0]+"|"+p[2]+"|"+curColor+"|"+curSize;var f=null;for(var i=0;i<cart.length;i++){if(cart[i].key==key)f=cart[i];}if(f)f.qty++;else cart.push({key:key,name:p[0]+" "+p[2],color:curColor,size:curSize,price:p[3],img:curImg,qty:1});updateCart();closeDetail();alert(p[2]+" added!");}
-function buyNow(){addFromDetail();openCart();}
-function closeDetail(){document.getElementById('detailModal').style.display='none';}
-function getTotals(){var sub=0,cnt=0;for(var i=0;i<cart.length;i++){sub+=cart[i].price*cart[i].qty;cnt+=cart[i].qty;}var loc=document.getElementById('cLocation').value;var fee=loc=="PH"?2000:loc=="Other"?4500:3500;return{sub:sub,cnt:cnt,fee:fee,grand:sub+fee};}
-function updateCart(){var t=getTotals();document.getElementById('count').innerText=t.cnt;document.getElementById('headCount').innerText=t.cnt;document.getElementById('total').innerText=t.sub.toLocaleString();renderCart();}
-function renderCart(){var t=getTotals();document.getElementById('subTotal').innerText=t.sub.toLocaleString();document.getElementById('deliveryFee').innerText=t.fee.toLocaleString();document.getElementById('grandTotal').innerText=t.grand.toLocaleString();document.getElementById('payBtnTotal').innerText=t.grand.toLocaleString();if(cart.length==0){document.getElementById('cartList').innerHTML="<p>Cart empty</p>";return;}var h="";for(var i=0;i<cart.length;i++){var x=cart[i];h+='<div style="display:flex;gap:10px;border-bottom:1px solid #eee;padding:8px 0"><img src="'+x.img+'" style="width:60px;height:60px;object-fit:cover;border-radius:8px"><div style="flex:1"><b>'+x.name+'</b><br>'+x.color+' | '+x.size+' | ₦'+x.price.toLocaleString()+'<br><button onclick="chg('+i+',-1)">-</button> '+x.qty+' <button onclick="chg('+i+',1)">+</button> <button onclick="del('+i+')">🗑</button></div><b>₦'+(x.price*x.qty).toLocaleString()+'</b></div>';}document.getElementById('cartList').innerHTML=h;}
-function chg(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);updateCart();}
-function del(i){cart.splice(i,1);updateCart();}
-function openCart(){renderCart();document.getElementById('cartModal').style.display='block';}
-function closeCart(){document.getElementById('cartModal').style.display='none';}
-function filterCat(c,btn){var b=document.querySelectorAll('.cat button');for(var i=0;i<b.length;i++)b[i].classList.remove('active');btn.classList.add('active');curCat=c;applyFilters();}
-function searchP(){var q=document.getElementById('search').value.toLowerCase();if(!q){applyFilters();return;}cur=[];for(var i=0;i<P.length;i++){if((P[i][0]+" "+P[i][2]).toLowerCase().indexOf(q)>-1)cur.push(P[i]);}show(cur);}
-function checkoutWhatsApp(){if(cart.length==0){alert("Cart empty");return;}var t=getTotals();var m="Hello, I want: ";for(var i=0;i<cart.length;i++){m+=cart[i].name+" ("+cart[i].color+", "+cart[i].size+") x"+cart[i].qty+", ";}m+=" TOTAL: ₦"+t.grand.toLocaleString();window.open("https://wa.me/2349037002209?text="+encodeURIComponent(m));}
-function payWithPaystack(){if(cart.length==0){alert("Cart empty");return;}var name=document.getElementById('cName').value,email=document.getElementById('cEmail').value,phone=document.getElementById('cPhone').value,addr=document.getElementById('cAddress').value;if(!name||!email||!phone||!addr){alert("Fill all fields");return;}var t=getTotals();var h=PaystackPop.setup({key:KEY,email:email,amount:t.grand*100,currency:"NGN",ref:"FH-"+Math.floor(Math.random()*1000000000),callback:function(res){alert("Payment Successful! "+res.reference);cart=[];updateCart();closeCart();},onClose:function(){alert("Payment cancelled");}});h.openIframe();}
-renderBrands();show(P);
+var wheel=document.getElementById('wheel');
+var html="";
+for(var i=0;i<prizes.length;i++){
+var deg=i*(360/prizes.length);
+html+='<div class="seg" style="background:'+prizes[i].color+';transform:rotate('+deg+'deg) skewY('+(90-(360/prizes.length))+'deg)"><span style="transform:skewY(-'+(90-(360/prizes.length))+'deg) rotate('+((360/prizes.length)/2)+'deg);display:block;width:80px">'+prizes[i].label+'</span></div>';
+}
+wheel.innerHTML=html;
+var spinning=false,currentDeg=0;
+function spin(){
+if(spinning) return;
+spinning=true;
+document.getElementById('spinBtn').disabled=true;
+document.getElementById('spinBtn').innerText="Spinning...";
+document.getElementById('result').style.display='none';
+// Make 50% hard to win - only 5% chance
+var rand=Math.random();
+var winIndex;
+if(rand<0.05){winIndex=0;}
+else if(rand<0.20){winIndex=3;}
+else if(rand<0.45){winIndex=1;}
+else if(rand<0.60){winIndex=4;}
+else if(rand<0.75){winIndex=5;}
+else if(rand<0.90){winIndex=2;}
+else{winIndex=6;}
+var segAngle=360/prizes.length;
+var target=360*5 + (360 - (winIndex*segAngle + segAngle/2));
+currentDeg+=target;
+wheel.style.transform="rotate("+currentDeg+"deg)";
+setTimeout(function(){
+spinning=false;
+document.getElementById('spinBtn').disabled=false;
+document.getElementById('spinBtn').innerText="🎡 SPIN AGAIN";
+var p=prizes[winIndex];
+var res=document.getElementById('result');
+res.style.display='block';
+if(p.label=="TRY AGAIN"){
+document.getElementById('winTitle').innerText="😢 TRY AGAIN!";
+document.getElementById('winText').innerText="No wahala, spin again! Your luck dey come.";
+document.getElementById('winCode').style.display='none';
+}else{
+document.getElementById('winTitle').innerText="🎉 YOU WIN "+p.label+"!";
+document.getElementById('winText').innerText="You win "+p.label+" for Fashion Hub! Use this code when you checkout.";
+var code=p.code+"-"+Math.floor(1000+Math.random()*9000);
+document.getElementById('winCode').style.display='block';
+document.getElementById('winCode').innerText=code;
+window.lastCode=code;
+window.lastPrize=p.label;
+}
+window.scrollTo(0,document.body.scrollHeight);
+},4200);
+}
+function goShop(){
+var code=window.lastCode||"";
+window.location.href="index.html?discount="+code;
+}
+function claimWA(){
+var code=window.lastCode||"";
+var prize=window.lastPrize||"";
+var msg="Hello Fashion Hub! I spin & win! 🎡 I win "+prize+" Code: "+code+" I want to use am now!";
+window.open("https://wa.me/2349037002209?text="+encodeURIComponent(msg));
+}
 </script>
 </body>
 </html>
