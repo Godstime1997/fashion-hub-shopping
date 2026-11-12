@@ -2,127 +2,107 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fashion Hub - Spin & Win</title>
+<title>Fashion Hub - Full Clothes Hub</title>
+<script src="https://js.paystack.co/v1/inline.js"></script>
 <style>
-body{font-family:Arial;margin:0;background:#111;color:#fff;text-align:center}
-.top{background:#fb7701;padding:12px;font-weight:900;font-size:20px}
-.top span{color:#000}
-h1{margin:10px 0 0;font-size:26px}
-p{color:#ccc;font-size:14px}
-.wheel-wrap{position:relative;width:310px;height:310px;margin:15px auto}
-#wheel{width:310px;height:310px;border-radius:50%;border:8px solid #fff;transition:transform 4s cubic-bezier(.17,.67,.21,1);position:relative;overflow:hidden;background:#000}
-.seg{position:absolute;width:50%;height:50%;top:0;left:50%;transform-origin:0 100%;display:flex;align-items:flex-start;justify-content:center;padding-top:18px;font-weight:900;font-size:13px;color:#fff;text-align:center}
-.pointer{position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-size:42px;z-index:10}
-#spinBtn{background:#fb7701;color:#fff;border:none;padding:16px 40px;border-radius:30px;font-size:20px;font-weight:900;margin-top:10px}
-#spinBtn:disabled{background:#666}
-.result{background:#fff;color:#000;margin:15px;border-radius:16px;padding:16px;display:none}
-.result h2{margin:0;color:#e60000}
-.code{background:#000;color:#FFD700;padding:12px;border-radius:10px;font-size:22px;font-weight:900;letter-spacing:2px;margin:10px 0}
-.btn{border:none;padding:14px;width:100%;border-radius:12px;font-weight:bold;font-size:16px;margin-top:8px}
-.shop{background:#00c853;color:#fff}
-.wa{background:#25D366;color:#fff}
-.info{background:#222;margin:10px;border-radius:12px;padding:12px;font-size:13px;text-align:left}
-.info b{color:#FFD700}
+body{font-family:Arial;margin:0;background:#f5f5f5}header{background:#fff;padding:10px;position:sticky;top:0;z-index:20}.logo{font-size:24px;font-weight:900}.logo span{color:#fb7701}.search{display:flex;gap:6px;margin:10px 0}.search input{flex:1;padding:12px;border:2px solid #fb7701;border-radius:25px}.search button{background:#fb7701;color:#fff;border:none;padding:0 15px;border-radius:25px;font-weight:bold}.spin-banner{background:#111;color:#fff;margin:0 10px 10px;border-radius:16px;padding:14px;text-align:center}.spin-banner h2{margin:0}.spin-banner button{background:#fb7701;color:#fff;border:none;padding:12px 25px;border-radius:25px;font-weight:900;margin-top:8px}.wheel-wrap{position:relative;width:200px;height:200px;margin:10px auto}.wheel-wrap #wheel{width:200px;height:200px;border-radius:50%;border:5px solid #fff;transition:transform 4s cubic-bezier(.17,.67,.21,1);position:relative;overflow:hidden}.seg{position:absolute;width:50%;height:50%;top:0;left:50%;transform-origin:0 100%;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;font-weight:900;font-size:10px;color:#fff}.cat{display:flex;gap:8px;overflow-x:auto;padding-bottom:5px}.cat button{white-space:nowrap;border:none;background:#fff2e6;padding:8px 14px;border-radius:20px;font-weight:bold}.cat button.active{background:#000;color:#fff}.brand-bar{display:flex;gap:10px;overflow-x:auto;padding:10px}.brand{min-width:85px;text-align:center;background:#fff;border-radius:14px;padding:10px 5px;cursor:pointer;border:2px solid #eee}.brand.active{border:2px solid #fb7701;background:#fff2e6}.brand b{font-size:12px}.brand small{font-size:11px;color:#888}.banner{background:#000;color:#fff;margin:0 10px 10px;border-radius:14px;padding:14px}.products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px 10px}.card{background:#fff;border-radius:12px;overflow:hidden;cursor:pointer}.card img{width:100%;height:195px;object-fit:cover}.card-body{padding:9px}.card h3{font-size:13px;margin:0;min-height:32px}.brand-tag{background:#000;color:#fff;font-size:10px;padding:3px 7px;border-radius:10px;font-weight:bold}.price{color:#e60000;font-weight:900}.price del{color:#999;font-size:11px}.add{background:#fb7701;color:#fff;border:none;padding:8px;width:100%;border-radius:20px;font-weight:bold;margin-top:6px}.cart-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:10px;display:flex;justify-content:space-between;box-shadow:0 -3px 15px rgba(0,0,0,.15);z-index:30}.cart-bar button{background:#fb7701;color:#fff;border:none;padding:11px 14px;border-radius:25px;font-weight:bold}.cart-bar button.pay{background:#00c853}.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.8);overflow-y:auto;z-index:50}.box{background:#fff;margin:10px;border-radius:18px;padding:14px}.detail-img{width:100%;height:340px;object-fit:cover;border-radius:14px}.col-row{display:flex;gap:10px;flex-wrap:wrap}.col-item{text-align:center;cursor:pointer}.col-dot{width:52px;height:52px;border-radius:50%;border:3px solid #ddd}.col-item.sel .col-dot{border:4px solid #000}.size-row{display:flex;gap:8px;flex-wrap:wrap}.sz{padding:11px 18px;border:2px solid #ddd;border-radius:25px;font-weight:bold;background:#fff}.sz.sel{background:#000;color:#fff}.add-big{background:#fb7701;color:#fff;border:none;padding:16px;width:100%;border-radius:25px;font-weight:bold;font-size:18px}.buy-big{background:#00c853;color:#fff;border:none;padding:16px;width:100%;border-radius:25px;font-weight:bold;font-size:18px;margin-top:8px}.close-btn{background:#000;color:#fff;border:none;padding:9px 16px;border-radius:20px;float:right}input,select{width:100%;padding:13px;margin:6px 0;border:1px solid #ddd;border-radius:10px;box-sizing:border-box}.grand{background:#000;color:#fff;padding:11px;border-radius:10px;text-align:center;font-size:19px}.pay-btn{background:#00c853;color:#fff;border:none;padding:16px;width:100%;border-radius:12px;font-weight:bold;font-size:18px}.wa-btn{background:#25D366;color:#fff;border:none;padding:13px;width:100%;border-radius:12px;font-weight:bold;margin-top:8px}.sec{padding:5px 10px;font-weight:900;font-size:16px}.code-box{background:#FFD700;color:#000;padding:10px;border-radius:10px;font-weight:900;font-size:18px;display:none;margin-top:8px}
 </style>
 </head>
 <body>
-<div class="top">FASHION<span>HUB</span> 🎡 SPIN & WIN</div>
-<h1>Spin & Win Discount!</h1>
-<p>Spin once per day. Win discount, use am for shop!</p>
-<div class="wheel-wrap">
-<div class="pointer">🔻</div>
-<div id="wheel"></div>
-</div>
-<button id="spinBtn" onclick="spin()">🎡 SPIN NOW</button>
-<div class="result" id="result">
-<h2 id="winTitle">🎉 YOU WIN!</h2>
-<p id="winText"></p>
-<div class="code" id="winCode"></div>
-<p style="font-size:12px;color:#666">Screenshot this code or tap WhatsApp to claim</p>
-<button class="btn shop" onclick="goShop()">🛍️ SHOP NOW WITH DISCOUNT</button>
-<button class="btn wa" onclick="claimWA()">💬 CLAIM ON WHATSAPP</button>
-</div>
-<div class="info">
-<b>🏆 PRIZES:</b><br>
-🎉 50% OFF - Jackpot!<br>
-🎉 20% OFF<br>
-🎉 10% OFF<br>
-🎉 5% OFF<br>
-🚚 FREE DELIVERY<br>
-😢 Try Again
-</div>
+<header><div style="display:flex;justify-content:space-between"><div class="logo">FASHION<span>HUB</span></div><div>🛒 <b id="headCount">0</b></div></div><div class="search"><input id="search" placeholder="Search ANY Brand: Polo, Nike, Gucci..." onkeyup="searchP()"><button onclick="searchP()">Search</button></div></header>
+<div class="spin-banner"><h2>🎡 SPIN & WIN DISCOUNT!</h2><p style="margin:4px 0;font-size:13px;color:#ccc">Spin, Win Code, Use am to Buy Clothes Below!</p><div class="wheel-wrap"><div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-size:30px;z-index:10">🔻</div><div id="wheel"></div></div><button onclick="spin()">🎡 SPIN NOW</button><div class="code-box" id="winCodeBox">🎉 YOU WIN <span id="winLabel"></span> | Code: <span id="winCode"></span></div></div>
+<div class="sec">🔥 HOT SELLERS - MARKETING</div>
+<div class="products" id="marketGrid"></div>
+<div class="sec">🏷️ SHOP BY BRAND - EVERYTHING</div>
+<div class="brand-bar" id="brandBar"></div>
+<div class="banner"><h2 style="margin:0" id="bannerTitle">🏷️ ALL BRANDS</h2><p id="totalP" style="margin:4px 0"></p></div>
+<div class="cat"><button onclick="filterCat('all',this)" class="active">All</button><button onclick="filterCat('male',this)">Male</button><button onclick="filterCat('female',this)">Female</button><button onclick="filterCat('office',this)">Office</button><button onclick="filterCat('christmas',this)">Christmas Kids</button><button onclick="filterCat('kidsshoes',this)">Kids Shoes</button><button onclick="filterCat('jewellery',this)">Jewellery</button><button onclick="filterCat('watch',this)">Watches</button><button onclick="filterCat('bags',this)">Bags</button><button onclick="filterCat('native',this)">Native</button></div>
+<div class="products" id="products"></div>
+<div class="cart-bar"><div>🛒 <b id="count">0</b><br><b>Total: ₦<span id="total">0</span></b></div><div><button onclick="openCart()">View Cart</button> <button class="pay" onclick="openCart()">Checkout</button></div></div>
+<div class="modal" id="detailModal"><div class="box"><button class="close-btn" onclick="closeDetail()">X Close</button><img id="dImg" class="detail-img" src=""><div id="dBrand" style="margin-top:8px"></div><h2 id="dName"></h2><div><span style="color:#e60000;font-size:22px;font-weight:900">₦<span id="dPrice"></span></span> <del id="dOld"></del></div><p id="dDesc" style="color:#666;font-size:13px"></p><div><b>Colour: <span id="dColorName"></span></b></div><div class="col-row" id="dColors" style="margin-top:8px"></div><div style="margin-top:14px"><b>Size: <span id="dSizeName"></span></b></div><div class="size-row" id="dSizes" style="margin-top:8px"></div><button class="add-big" style="margin-top:15px" onclick="addFromDetail()">🛒 ADD TO CART</button><button class="buy-big" onclick="buyNow()">⚡ BUY NOW</button></div></div>
+<div class="modal" id="cartModal"><div class="box"><button class="close-btn" onclick="closeCart()">X Close</button><h2>🛒 Your Cart</h2><div id="cartList"></div><p>Discount Code: <input id="discountCode" placeholder="Enter Spin Code e.g FH20-1234"></p><p>Subtotal: ₦<b id="subTotal">0</b></p><p>Delivery: ₦<b id="deliveryFee">2,000</b></p><div class="grand">TOTAL: ₦<span id="grandTotal">0</span></div><br><input id="cName" placeholder="Full Name *"><input id="cPhone" placeholder="Phone *"><input id="cEmail" placeholder="Email *"><input id="cAddress" placeholder="Address *"><select id="cLocation" onchange="renderCart()"><option value="PH">Port Harcourt - ₦2,000</option><option value="Lagos">Lagos - ₦3,500</option><option value="Abuja">Abuja - ₦3,500</option><option value="Other">Other - ₦4,500</option></select><button class="pay-btn" onclick="payWithPaystack()">💳 PAY ₦<span id="payBtnTotal">0</span> NOW</button><button class="wa-btn" onclick="checkoutWhatsApp()">💬 WhatsApp Order</button></div></div>
 <script>
-var prizes=[
-{label:"50% OFF",color:"#e60000",code:"FH50"},
-{label:"10% OFF",color:"#fb7701",code:"FH10"},
-{label:"TRY AGAIN",color:"#333",code:""},
-{label:"20% OFF",color:"#00a651",code:"FH20"},
-{label:"5% OFF",color:"#0066ff",code:"FH05"},
-{label:"FREE DELIVERY",color:"#800080",code:"FHFREE"},
-{label:"10% OFF",color:"#fb7701",code:"FH10"},
-{label:"TRY AGAIN",color:"#333",code:""}
+var KEY="pk_live_522e90bc4d7ec45abe67ed9b807d7512a0d8ce5b";
+var C={Black:"#000",White:"#fff",Red:"#e60000",Blue:"#0066ff",Green:"#00a651",Pink:"#FFC0CB",Brown:"#8B4513",Beige:"#E8DCC8",Yellow:"#FFD700",Purple:"#800080",Wine:"#722F37",Navy:"#000080",Grey:"#888",Gold:"#FFD700",Silver:"#C0C0C0",Olive:"#808000",Khaki:"#C3B091"};
+var P=[],USED={};
+function add(brand,cat,name,price,img,cols){var k=brand+"|"+name;if(USED[k])return;USED[k]=1;P.push([brand,cat,name,price,img,cols]);}
+var IMGS=["photo-1521572163474-6864f9cf17ab","photo-1556821840-3a63f95609a7","photo-1542272604-787c3835535d","photo-1596755094514-f87e34085b2c","photo-1617137968427-85924c800a22","photo-1507679799987-c73779587ccf","photo-1602810318383-e386cc2a3ccf","photo-1595777457583-95e059d581b8","photo-1539109136881-3be0616acf4b","photo-1515372039744-b8f02a3ae446","photo-1531746020798-e6953c6e8e04","photo-1483985988355-763728e1935b","photo-1509631179647-0177331693ae","photo-1496747611176-843222e1e57c","photo-1524504388940-b1c1722653e1","photo-1529139574466-a303027c1d8b","photo-1542291026-7eec264c27ff","photo-1543163521-1bf539c55dd2","photo-1549298916-b41d501d3772","photo-1614252369475-531eba835eb1","photo-1603487742131-4160ec999306","photo-1560769629-975ec94e6a86","photo-1595950653106-6c9ebd614d3a","photo-1606107557195-0e29a4b5b4aa","photo-1584917865442-de89df76afd3","photo-1553062407-98eeb64c6a62","photo-1523275335684-37898b6baf30","photo-1515562141207-7a88fb7ce338","photo-1572635196237-14b3f281503f","photo-1610694955371-d4a3e0ce4b52","photo-1594938298603-c8148c4dae35","photo-1603252109303-2751441dd157","photo-1524592094714-0f0654e20314","photo-1523170335258-f5ed11844a49","photo-1611591437281-460bfbe1220a"];
+var n=0;function nextImg(){return IMGS[n++%IMGS.length];}
+var BRAND_DATA=[
+["POLO CLASSIC","male",5000,["Classic White Polo","Classic Black Polo","Classic Blue Polo","Classic Red Polo","Classic Green Polo"]],
+["POLO PIQUE","male",5000,["Pique White Polo","Pique Black Polo","Pique Blue Polo","Pique Red Polo"]],
+["POLO STRIPED","male",5000,["Striped Red-White Polo","Striped Green-White Polo","Striped Blue-White Polo","Striped Black-White Polo"]],
+["POLO LONG SLEEVE","male",6000,["Long Sleeve White Polo","Long Sleeve Black Polo","Long Sleeve Blue Polo"]],
+["LACOSTE POLO","male",16000,["Lacoste Green Polo","Lacoste White Polo","Lacoste Black Polo","Lacoste Blue Polo"]],
+["TOMMY POLO","male",18000,["Tommy Blue Polo","Tommy White Polo","Tommy Red Polo","Tommy Black Polo"]],
+["RALPH LAUREN POLO","male",18000,["Ralph White Polo","Ralph Black Polo","Ralph Blue Polo","Ralph Red Polo"]],
+["NIKE","male",15000,["Nike Sneakers","Nike T-Shirt","Nike Hoodie","Nike Shorts","Nike Tracksuit","Nike Cap"]],
+["ADIDAS","male",14000,["Adidas Sneakers","Adidas T-Shirt","Adidas Hoodie","Adidas Tracksuit"]],
+["PUMA","male",13000,["Puma Sneakers","Puma T-Shirt","Puma Hoodie"]],
+["ZARA","female",5000,["Zara Gown","Zara Crop Top","Zara Skirt","Zara Blouse","Zara Maxi Dress","Zara Blazer"]],
+["H&M","female",5000,["H&M Gown","H&M Top","H&M Jeans","H&M Dress"]],
+["SHEIN","female",5000,["Shein Gown","Shein Crop Top","Shein Skirt","Shein Dress"]],
+["GUCCI","bags",25000,["Gucci Handbag","Gucci Bag","Gucci Necklace","Gucci Watch"]],
+["LOUIS VUITTON","bags",35000,["LV Handbag","LV Bag","LV Wallet"]],
+["CHANEL","bags",35000,["Chanel Handbag","Chanel Bag","Chanel Perfume"]],
+["DIOR","female",30000,["Dior Gown","Dior Handbag","Dior Dress"]],
+ ["ROLEX","watch",80000,["Rolex Gold Watch","Rolex Silver Watch","Rolex Black Watch"]],
+["CARTIER","watch",70000,["Cartier Gold Watch","Cartier Silver Watch"]],
+["CASIO","watch",20000,["Casio Black Watch","Casio Silver Watch","Casio Gold Watch"]],
+["APPLE WATCH","watch",60000,["Apple Watch Black","Apple Watch White","Apple Watch Pink"]],
+["G-SHOCK","watch",35000,["G-Shock Black Watch","G-Shock Red Watch"]],
+["FOSSIL","watch",30000,["Fossil Brown Watch","Fossil Black Watch"]],
+["MICHAEL KORS","watch",45000,["MK Gold Watch","MK Silver Watch","MK Rose Gold Watch"]],
+["JEWELLERY","jewellery",5000,["Gold Necklace","Silver Earrings","Gold Bracelet","Gold Ring","Beaded Necklace"]],
+["MAMA PIW","female",5000,["Mama Piw Maxi Dress","Mama Piw Blouse","Mama Piw Gown"]],
+["SENATOR","male",15000,["Senator Set White","Senator Set Black","Senator Set Blue","Senator Set Wine"]],
+["AGBADA","native",35000,["Agbada Gold","Agbada White","Agbada Black","Agbada Blue"]],
+["ANKARA","female",15000,["Ankara Gown","Ankara Skirt","Ankara Blouse","Ankara Maxi"]],
+["CHRISTMAS KIDS","christmas",5000,["Christmas Dress Red","Christmas Suit Red","Christmas Gown Green","Christmas Dress White"]],
+["KIDS SHOES","kidsshoes",8000,["Kids Sneakers","Kids Sandals","Kids Boots","Kids Canvas"]],
+["CHELSEA BOOTS","male",25000,["Chelsea Brown Boots","Chelsea Black Boots"]],
+["OXFORD","male",22000,["Oxford Black Shoes","Oxford Brown Shoes"]],
+["LOAFERS","male",18000,["Loafers Black","Loafers Brown"]],
+["SNEAKERS","male",15000,["Sneakers White","Sneakers Black","Sneakers Red","Sneakers Blue"]],
+["SANDALS","male",10000,["Sandals Brown","Sandals Black"]]
 ];
-var wheel=document.getElementById('wheel');
-var html="";
-for(var i=0;i<prizes.length;i++){
-var deg=i*(360/prizes.length);
-html+='<div class="seg" style="background:'+prizes[i].color+';transform:rotate('+deg+'deg) skewY('+(90-(360/prizes.length))+'deg)"><span style="transform:skewY(-'+(90-(360/prizes.length))+'deg) rotate('+((360/prizes.length)/2)+'deg);display:block;width:80px">'+prizes[i].label+'</span></div>';
-}
-wheel.innerHTML=html;
-var spinning=false,currentDeg=0;
-function spin(){
-if(spinning) return;
-spinning=true;
-document.getElementById('spinBtn').disabled=true;
-document.getElementById('spinBtn').innerText="Spinning...";
-document.getElementById('result').style.display='none';
-// Make 50% hard to win - only 5% chance
-var rand=Math.random();
-var winIndex;
-if(rand<0.05){winIndex=0;}
-else if(rand<0.20){winIndex=3;}
-else if(rand<0.45){winIndex=1;}
-else if(rand<0.60){winIndex=4;}
-else if(rand<0.75){winIndex=5;}
-else if(rand<0.90){winIndex=2;}
-else{winIndex=6;}
-var segAngle=360/prizes.length;
-var target=360*5 + (360 - (winIndex*segAngle + segAngle/2));
-currentDeg+=target;
-wheel.style.transform="rotate("+currentDeg+"deg)";
-setTimeout(function(){
-spinning=false;
-document.getElementById('spinBtn').disabled=false;
-document.getElementById('spinBtn').innerText="🎡 SPIN AGAIN";
-var p=prizes[winIndex];
-var res=document.getElementById('result');
-res.style.display='block';
-if(p.label=="TRY AGAIN"){
-document.getElementById('winTitle').innerText="😢 TRY AGAIN!";
-document.getElementById('winText').innerText="No wahala, spin again! Your luck dey come.";
-document.getElementById('winCode').style.display='none';
-}else{
-document.getElementById('winTitle').innerText="🎉 YOU WIN "+p.label+"!";
-document.getElementById('winText').innerText="You win "+p.label+" for Fashion Hub! Use this code when you checkout.";
-var code=p.code+"-"+Math.floor(1000+Math.random()*9000);
-document.getElementById('winCode').style.display='block';
-document.getElementById('winCode').innerText=code;
-window.lastCode=code;
-window.lastPrize=p.label;
-}
-window.scrollTo(0,document.body.scrollHeight);
-},4200);
-}
-function goShop(){
-var code=window.lastCode||"";
-window.location.href="index.html?discount="+code;
-}
-function claimWA(){
-var code=window.lastCode||"";
-var prize=window.lastPrize||"";
-var msg="Hello Fashion Hub! I spin & win! 🎡 I win "+prize+" Code: "+code+" I want to use am now!";
-window.open("https://wa.me/2349037002209?text="+encodeURIComponent(msg));
-}
+BRAND_DATA.forEach(function(b){var brand=b[0],cat=b[1],price=b[2],items=b[3];items.forEach(function(name){add(brand,cat,name,price,nextImg(),Object.keys(C));});});
+var cart=[],curBrand="all",curCat="all",searchQ="";
+var MARKET=[
+{name:"Polo Classic White",price:5000,img:"photo-1521572163474-6864f9cf17ab",brand:"POLO"},
+{name:"Lacoste Polo Green",price:16000,img:"photo-1617137968427-85924c800a22",brand:"LACOSTE"},
+{name:"Nike Sneakers White",price:15000,img:"photo-1542291026-7eec264c27ff",brand:"NIKE"},
+{name:"Chelsea Boots Brown",price:25000,img:"photo-1603487742131-4160ec999306",brand:"BOOTS"},
+{name:"Zara Gown Red",price:5000,img:"photo-1515372039744-b8f02a3ae446",brand:"ZARA"},
+{name:"Gucci Handbag",price:25000,img:"photo-1584917865442-de89df76afd3",brand:"GUCCI"}
+];
+var mg="";MARKET.forEach(function(m,i){mg+='<div class="card"><img src="https://images.unsplash.com/'+m.img+'?w=600"><div class="card-body"><span class="brand-tag">'+m.brand+'</span><h3>'+m.name+'</h3><div class="price">₦'+m.price.toLocaleString()+' <del>₦'+(m.price+3000).toLocaleString()+'</del></div><button class="add" onclick="buyMarket('+i+')">🛒 BUY NOW</button></div></div>';});
+document.getElementById('marketGrid').innerHTML=mg;
+function buyMarket(i){var m=MARKET[i];var code=window.lastCode||"No Code";var msg="Hello Fashion Hub! I want to buy: "+m.name+" - ₦"+m.price.toLocaleString()+" | Spin Code: "+code;window.open("https://wa.me/2349037002209?text="+encodeURIComponent(msg));}
+function renderBrands(){var brands={};P.forEach(function(p){brands[p[0]]=(brands[p[0]]||0)+1});var h='<div class="brand '+(curBrand=="all"?"active":"")+'" onclick="setBrand(\'all\')"><b>ALL</b><br><small>'+P.length+' items</small></div>';Object.keys(brands).forEach(function(b){h+='<div class="brand '+(curBrand==b?"active":"")+'" onclick="setBrand(\''+b+'\')"><b>'+b+'</b><br><small>'+brands[b]+' items</small></div>';});document.getElementById('brandBar').innerHTML=h;}
+function setBrand(b){curBrand=b;renderBrands();renderProducts();}
+function filterCat(c,el){curCat=c;document.querySelectorAll('.cat button').forEach(function(x){x.classList.remove('active')});el.classList.add('active');renderProducts();}
+function searchP(){searchQ=document.getElementById('search').value.toLowerCase();renderProducts();}
+function renderProducts(){var list=P.filter(function(p){if(curBrand!="all"&&p[0]!=curBrand)return false;if(curCat!="all"&&p[1]!=curCat)return false;if(searchQ&&!(p[0].toLowerCase().includes(searchQ)||p[2].toLowerCase().includes(searchQ)))return false;return true;});document.getElementById('totalP').innerText=list.length+" Products - "+(curBrand=="all"?"All Brands":curBrand);var h="";list.forEach(function(p,i){h+='<div class="card" onclick="openDetail(\''+p[0]+'\',\''+p[2]+'\')"><img src="https://images.unsplash.com/'+p[4]+'?w=600"><div class="card-body"><span class="brand-tag">'+p[0]+'</span><h3>'+p[2]+'</h3><div class="price">₦'+p[3].toLocaleString()+' <del>₦'+(p[3]+2000).toLocaleString()+'</del></div><button class="add" onclick="event.stopPropagation();quickAdd(\''+p[0]+'\',\''+p[2]+'\','+p[3]+')">+ ADD TO CART</button></div></div>';});document.getElementById('products').innerHTML=h||"<p style='padding:10px'>No product found</p>";}
+var detail=null,selColor="Black",selSize="M";
+function openDetail(brand,name){var p=P.find(function(x){return x[0]==brand&&x[2]==name});detail=p;selColor="Black";selSize="M";document.getElementById('dImg').src="https://images.unsplash.com/"+p[4]+"?w=800";document.getElementById('dBrand').innerHTML='<span class="brand-tag">'+p[0]+'</span>';document.getElementById('dName').innerText=p[2];document.getElementById('dPrice').innerText=p[3].toLocaleString();document.getElementById('dOld').innerText="₦"+(p[3]+2000).toLocaleString();document.getElementById('dDesc').innerText=p[2]+" - Premium quality from "+p[0]+". Fast delivery in Port Harcourt, Lagos, Abuja.";renderDetailOpts();document.getElementById('detailModal').style.display='block';}
+function renderDetailOpts(){document.getElementById('dColorName').innerText=selColor;var ch="";detail[5].slice(0,12).forEach(function(c){ch+='<div class="col-item '+(selColor==c?"sel":"")+'" onclick="selColor=\''+c+'\';renderDetailOpts()"><div class="col-dot" style="background:'+C[c]+'"></div><small>'+c+'</small></div>';});document.getElementById('dColors').innerHTML=ch;document.getElementById('dSizeName').innerText=selSize;var sizes=detail[1]=="kidsshoes"?["28","30","32","34"]:detail[1]=="watch"||detail[1]=="jewellery"||detail[1]=="bags"?["One Size"]:["S","M","L","XL","XXL"];var sh="";sizes.forEach(function(s){sh+='<div class="sz '+(selSize==s?"sel":"")+'" onclick="selSize=\''+s+'\';renderDetailOpts()">'+s+'</div>';});document.getElementById('dSizes').innerHTML=sh;}
+function closeDetail(){document.getElementById('detailModal').style.display='none';}
+function addFromDetail(){cart.push({brand:detail[0],name:detail[2],price:detail[3],color:selColor,size:selSize,qty:1});updateCart();closeDetail();alert("Added to cart!");}
+function quickAdd(b,n,pr){cart.push({brand:b,name:n,price:pr,color:"Black",size:"M",qty:1});updateCart();alert("Added!");}
+function buyNow(){addFromDetail();openCart();}
+function updateCart(){var c=cart.reduce(function(a,x){return a+x.qty},0);var t=cart.reduce(function(a,x){return a+x.price*x.qty},0);document.getElementById('count').innerText=c;document.getElementById('headCount').innerText=c;document.getElementById('total').innerText=t.toLocaleString();}
+function openCart(){renderCart();document.getElementById('cartModal').style.display='block';}
+function closeCart(){document.getElementById('cartModal').style.display='none';}
+function renderCart(){var h="";if(cart.length==0)h="<p>Cart empty</p>";cart.forEach(function(it,i){h+='<div style="display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:8px 0"><div><b>'+it.name+'</b><br><small>'+it.brand+' | '+it.color+' | '+it.size+' | Qty '+it.qty+'</small></div><div>₦'+(it.price*it.qty).toLocaleString()+' <button onclick="cart.splice('+i+',1);updateCart();renderCart()">X</button></div></div>';});document.getElementById('cartList').innerHTML=h;var sub=cart.reduce(function(a,x){return a+x.price*x.qty},0);var loc=document.getElementById('cLocation').value;var del=loc=="PH"?2000:loc=="Lagos"||loc=="Abuja"?3500:4500;var code=document.getElementById('discountCode').value.toUpperCase();var disc=0;if(code.startsWith("FH50"))disc=sub*0.5;else if(code.startsWith("FH20"))disc=sub*0.2;else if(code.startsWith("FH10"))disc=sub*0.1;else if(code.startsWith("FH05"))disc=sub*0.05;else if(code.startsWith("FHFREE"))del=0;var grand=sub-disc+del;if(cart.length==0)grand=0;document.getElementById('subTotal').innerText=sub.toLocaleString();document.getElementById('deliveryFee').innerText=del.toLocaleString();document.getElementById('grandTotal').innerText=grand.toLocaleString();document.getElementById('payBtnTotal').innerText=grand.toLocaleString();window.grand=grand;}
+function checkoutWhatsApp(){var msg="Hello Fashion Hub! My Order:\n";cart.forEach(function(it){msg+=it.name+" - "+it.color+" - "+it.size+" - ₦"+it.price.toLocaleString()+"\n";});msg+="Code: "+document.getElementById('discountCode').value+"\nTotal: ₦"+window.grand.toLocaleString()+"\nName: "+document.getElementById('cName').value+"\nPhone: "+document.getElementById('cPhone').value+"\nAddress: "+document.getElementById('cAddress').value;window.open("https://wa.me/2349037002209?text="+encodeURIComponent(msg));}
+function payWithPaystack(){if(cart.length==0)return alert("Cart empty");if(!document.getElementById('cName').value)return alert("Enter Name");if(!document.getElementById('cEmail').value)return alert("Enter Email");var handler=PaystackPop.setup({key:KEY,email:document.getElementById('cEmail').value,amount:window.grand*100,currency:"NGN",ref:"FH"+Math.floor(Math.random()*1000000),callback:function(r){alert("Payment Successful! Ref: "+r.reference);cart=[];updateCart();closeCart();},onClose:function(){alert("Payment cancelled");}});handler.openIframe();}
+// SPIN LOGIC
+var prizes=[{label:"50% OFF",color:"#e60000",code:"FH50"},{label:"10% OFF",color:"#fb7701",code:"FH10"},{label:"TRY AGAIN",color:"#333",code:""},{label:"20% OFF",color:"#00a651",code:"FH20"},{label:"5% OFF",color:"#0066ff",code:"FH05"},{label:"FREE DELIVERY",color:"#800080",code:"FHFREE"},{label:"10% OFF",color:"#fb7701",code:"FH10"},{label:"TRY AGAIN",color:"#333",code:""}];
+var wheel=document.getElementById('wheel');var wh="";for(var i=0;i<prizes.length;i++){var deg=i*45;wh+='<div class="seg" style="background:'+prizes[i].color+';transform:rotate('+deg+'deg) skewY(45deg)"><span style="transform:skewY(-45deg) rotate(22deg);display:block;width:70px">'+prizes[i].label+'</span></div>';}wheel.innerHTML=wh;
+var spinning=false,curDeg=0;
+function spin(){if(spinning)return;spinning=true;var rand=Math.random();var winIndex;if(rand<0.05)winIndex=0;else if(rand<0.2)winIndex=3;else if(rand<0.45)winIndex=1;else if(rand<0.6)winIndex=4;else if(rand<0.75)winIndex=5;else if(rand<0.9)winIndex=2;else winIndex=6;curDeg+=360*5+(360-(winIndex*45+22));wheel.style.transform="rotate("+curDeg+"deg)";setTimeout(function(){spinning=false;var p=prizes[winIndex];if(p.label=="TRY AGAIN"){document.getElementById('winCodeBox').style.display='block';document.getElementById('winLabel').innerText="TRY AGAIN - Spin Again!";document.getElementById('winCode').innerText="";}else{var code=p.code+"-"+Math.floor(1000+Math.random()*9000);window.lastCode=code;window.lastPrize=p.label;document.getElementById('winCodeBox').style.display='block';document.getElementById('winLabel').innerText=p.label;document.getElementById('winCode').innerText=code;document.getElementById('discountCode').value=code;alert("You Win "+p.label+"! Code: "+code+" - Code don enter Cart automatically!");}},4200);}
+renderBrands();renderProducts();
 </script>
 </body>
-</html>
+</html> 
