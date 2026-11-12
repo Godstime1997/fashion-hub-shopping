@@ -51,6 +51,11 @@ for(var i=0;i<30;i++){for(var j=0;j<WAT.length;j++){P.push(["watch","⌚ "+WAT[j
 // ==== 8. NATIVE + BAGS ====
 P.push(["native","Senator Wear",25000,"photo-1594938298603-c8148c4dae35","Black,White,Wine,Navy"],["native","Agbada Grand",45000,"photo-1594938298603-c8148c4dae35","White,Gold,Brown"],["native","Kaftan Men",28000,"photo-1603252109303-2751441dd157","White,Black,Beige"],["native","Ankara Gown Women",24000,"photo-1539109136881-3be0616acf4b","Green,Red,Yellow"],["bags","Ladies Handbag",15000,"photo-1584917865442-de89df76afd3","Black,Brown,Pink"],["bags","Backpack",16000,"photo-1553062407-98eeb64c6a62","Black,Blue,Grey"]);
 document.getElementById('totalP').innerText=P.length.toLocaleString();document.getElementById('catTotal').innerText=P.length.toLocaleString();
+  // REMOVE DOUBLE - keep only 1 of each name
+var seen={}; var clean=[];
+for(var k=0;k<P.length;k++){ if(!seen[P[k][1]]){ seen[P[k][1]]=1; clean.push(P[k]); } }
+P=clean;
+document.getElementById('totalP').innerText=P.length.toLocaleString();document.getElementById('catTotal').innerText=P.length.toLocaleString();
 var cart=[],cur=P,curIdx=0,curColor="Black",curSize="M",curImg="",page=0,pageSize=60;
 var SIZES=["S","M","L","XL","XXL"];
 function imgU(id){return "https://images.unsplash.com/"+id+"?w=600";}
