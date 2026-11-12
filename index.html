@@ -2,158 +2,194 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fashion Hub - Big Shop</title>
+<title>Fashion Hub - Like Temu & Jumia</title>
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <style>
-body{font-family:Arial;margin:0;background:#fff5f0}
-header{background:#000;color:#fff;padding:14px;text-align:center;position:sticky;top:0;z-index:10}
-header h1{margin:0;font-size:24px} header p{color:#ffcc00;font-size:12px;margin:3px}
-.search{padding:10px;text-align:center;background:#fff}
-.search input{width:92%;padding:13px;border-radius:25px;border:1px solid #ddd}
-.cat{text-align:center;padding:8px;overflow-x:auto;white-space:nowrap}
-.cat button{padding:9px 13px;margin:2px;border:none;border-radius:20px;background:#000;color:#fff;font-weight:bold}
-.cat button.active{background:#ff6600}
-.bar{background:#ff6600;color:#fff;text-align:center;padding:9px;font-weight:bold}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:11px;padding-bottom:140px}
-.card{background:#fff;border-radius:14px;padding:10px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.card img{width:100%;height:210px;object-fit:cover;border-radius:11px}
-.card h3{font-size:14px;margin:7px 0 2px;min-height:34px}
-.badge{background:#ff6600;color:#fff;font-size:10px;padding:3px 8px;border-radius:10px}
-.card p{color:#e60000;font-weight:bold;margin:5px;font-size:16px}
-.card del{color:#999;font-size:12px}
-.lab{font-size:11px;color:#555;margin-top:6px}
-.dots{display:flex;justify-content:center;gap:5px;margin:5px 0}
-.dot{width:26px;height:26px;border-radius:50%;border:2px solid #ddd;cursor:pointer}
-.dot.sel{border:3px solid #000}
-.sizes{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin:5px 0}
-.sz{padding:5px 9px;border:1px solid #ddd;border-radius:15px;font-size:12px;background:#fff;cursor:pointer}
-.sz.sel{background:#000;color:#fff;border-color:#000}
-.card button.add{background:#000;color:#fff;border:none;padding:10px;width:100%;border-radius:20px;font-weight:bold;font-size:14px}
-.cart-bar{position:fixed;bottom:0;left:0;right:0;background:#000;color:#fff;padding:13px;text-align:center;z-index:20}
-.cart-bar button{background:#ffcc00;border:none;padding:11px 15px;border-radius:20px;font-weight:bold;margin:2px}
-.cart-bar button.pay{background:#00c853;color:#fff}
-.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);overflow-y:auto;z-index:30}
-.box{background:#fff;margin:12px;border-radius:16px;padding:16px}
+*{box-sizing:border-box} body{font-family:Arial;margin:0;background:#f5f5f5}
+/* TEMU TOP BAR */
+.topbar{background:#fb7701;color:#fff;padding:8px;text-align:center;font-size:12px;font-weight:bold}
+header{background:#fff;padding:10px;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.logo{font-size:24px;font-weight:900} .logo span{color:#fb7701}
+.search{display:flex;gap:6px;margin:10px 0}
+.search input{flex:1;padding:12px;border:2px solid #fb7701;border-radius:25px;outline:none}
+.search button{background:#fb7701;color:#fff;border:none;padding:0 18px;border-radius:25px;font-weight:bold}
+.cat{display:flex;gap:8px;overflow-x:auto;padding:5px 0}
+.cat button{white-space:nowrap;border:none;background:#fff2e6;color:#333;padding:8px 14px;border-radius:20px;font-weight:bold}
+.cat button.active{background:#fb7701;color:#fff}
+/* JUMIA BANNER */
+.banner{background:linear-gradient(90deg,#fb7701,#ff9a00);color:#fff;margin:10px;border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center}
+.banner h2{margin:0;font-size:20px} .banner p{margin:4px 0;font-size:12px}
+.banner button{background:#fff;color:#fb7701;border:none;padding:9px 14px;border-radius:20px;font-weight:bold}
+.flash{background:#fff;margin:10px;border-radius:14px;padding:12px}
+.flash-head{display:flex;justify-content:space-between;align-items:center}
+.flash-head b{color:#e60000;font-size:16px} .timer{background:#000;color:#fff;padding:5px 10px;border-radius:15px;font-size:13px;font-weight:bold}
+.flash-sub{font-size:11px;color:#888;margin:4px 0}
+.products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px 140px}
+.card{background:#fff;border-radius:12px;overflow:hidden;cursor:pointer;box-shadow:0 1px 5px rgba(0,0,0,.06)}
+.card img{width:100%;height:195px;object-fit:cover}
+.card-body{padding:9px}
+.card h3{font-size:13px;margin:0;min-height:32px;line-height:1.3}
+.stars{color:#ffb400;font-size:12px;margin:3px 0} .sold{color:#888;font-size:11px}
+.price{color:#e60000;font-size:17px;font-weight:900} .price del{color:#999;font-size:11px;font-weight:normal}
+.off{background:#ffe8e8;color:#e60000;font-size:11px;padding:2px 6px;border-radius:10px;font-weight:bold}
+.free{color:#00a651;font-size:11px;font-weight:bold;margin:2px 0}
+.progress{height:6px;background:#ffe8e8;border-radius:10px;overflow:hidden;margin:4px 0}
+.progress div{height:100%;background:#fb7701}
+.left{font-size:11px;color:#e60000;font-weight:bold}
+.add{background:#fb7701;color:#fff;border:none;padding:8px;width:100%;border-radius:20px;font-weight:bold;margin-top:6px}
+.cart-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:10px 12px;box-shadow:0 -3px 15px rgba(0,0,0,.15);z-index:30;display:flex;justify-content:space-between;align-items:center}
+.cart-bar b{font-size:15px} .cart-bar button{background:#fb7701;color:#fff;border:none;padding:11px 16px;border-radius:25px;font-weight:bold}
+.cart-bar button.pay{background:#00c853}
+.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.8);overflow-y:auto;z-index:50}
+.box{background:#fff;margin:10px;border-radius:18px;padding:14px;padding-bottom:25px}
+.detail-img{width:100%;height:370px;object-fit:cover;border-radius:14px}
+.thumbs{display:flex;gap:8px;margin:10px 0;overflow-x:auto}
+.thumbs img{width:68px;height:68px;object-fit:cover;border-radius:10px;border:3px solid transparent}
+.thumbs img.sel{border-color:#fb7701}
+.lab{font-weight:bold;margin:14px 0 6px}
+.col-row{display:flex;gap:10px;flex-wrap:wrap}
+.col-item{text-align:center;cursor:pointer}
+.col-dot{width:52px;height:52px;border-radius:50%;border:3px solid #ddd;display:flex;align-items:center;justify-content:center;font-weight:bold}
+.col-item.sel .col-dot{border:4px solid #000;transform:scale(1.08)}
+.size-row{display:flex;gap:8px;flex-wrap:wrap}
+.sz{padding:11px 18px;border:2px solid #ddd;border-radius:25px;font-weight:bold;background:#fff;cursor:pointer}
+.sz.sel{background:#000;color:#fff}
+.qty-row{display:flex;align-items:center;gap:12px;margin:12px 0}
+.qty-row button{width:42px;height:42px;border-radius:50%;border:1px solid #ddd;background:#fff;font-size:22px;font-weight:bold}
+.add-big{background:#fb7701;color:#fff;border:none;padding:16px;width:100%;border-radius:25px;font-weight:bold;font-size:18px}
+.buy-big{background:#00c853;color:#fff;border:none;padding:16px;width:100%;border-radius:25px;font-weight:bold;font-size:18px;margin-top:8px}
+.close-btn{background:#000;color:#fff;border:none;padding:9px 16px;border-radius:20px;float:right}
 input,select{width:100%;padding:13px;margin:6px 0;border:1px solid #ddd;border-radius:10px;box-sizing:border-box}
 .grand{background:#000;color:#fff;padding:11px;border-radius:10px;text-align:center;font-size:19px}
 .pay-btn{background:#00c853;color:#fff;border:none;padding:16px;width:100%;border-radius:12px;font-weight:bold;font-size:18px}
 .wa-btn{background:#25D366;color:#fff;border:none;padding:13px;width:100%;border-radius:12px;font-weight:bold;margin-top:8px}
+.review{background:#f9f9f9;border-radius:12px;padding:10px;margin:8px 0;font-size:13px}
 </style>
 </head>
 <body>
-<header><h1>👗 FASHION HUB</h1><p>🔥 Big Shop - Choose Colour + Size | WhatsApp: 09037002209</p></header>
-<div class="search"><input id="search" placeholder="Search... Agbada, Gown, Hoodie, Ankara..." onkeyup="searchP()"></div>
-<div class="cat">
-<button onclick="filterCat('all',this)" class="active">All</button><button onclick="filterCat('men',this)">Men</button><button onclick="filterCat('women',this)">Women</button><button onclick="filterCat('native',this)">Native</button><button onclick="filterCat('kids',this)">Kids</button><button onclick="filterCat('shoes',this)">Shoes</button><button onclick="filterCat('bags',this)">Bags</button><button onclick="filterCat('acc',this)">Accessories</button>
+<div class="topbar">🔥 MEGA SALE | Up to 60% OFF | Free Delivery in PH on orders over ₦30,000 | Pay with Paystack</div>
+<header>
+<div style="display:flex;justify-content:space-between;align-items:center"><div class="logo">FASHION<span>HUB</span></div><div>🛒 <b id="headCount">0</b> | ❤️ | 👤</div></div>
+<div class="search"><input id="search" placeholder="🔍 Search Agbada, Gown, Hoodie, Sneakers..." onkeyup="searchP()"><button onclick="searchP()">Search</button></div>
+<div class="cat" id="catBar">
+<button onclick="filterCat('all',this)" class="active">🔥 All</button><button onclick="filterCat('men',this)">👔 Men</button><button onclick="filterCat('women',this)">👗 Women</button><button onclick="filterCat('native',this)">👑 Native</button><button onclick="filterCat('kids',this)">🧒 Kids</button><button onclick="filterCat('shoes',this)">👟 Shoes</button><button onclick="filterCat('bags',this)">👜 Bags</button><button onclick="filterCat('acc',this)">⌚ Accessories</button>
 </div>
-<div class="bar"><span id="totalCount">0</span> Clothes - Colour + Size Available</div>
+</header>
+<div class="banner"><div><h2>⚡ FLASH SALE</h2><p>Up to 60% OFF - Today Only!</p><p>⭐ 4.8 | 12,000+ Happy Customers in PH</p></div><button onclick="document.getElementById('products').scrollIntoView()">SHOP NOW →</button></div>
+<div class="flash"><div class="flash-head"><b>⚡ Flash Deals Ends In</b><span class="timer" id="timer">05:59:59</span></div><div class="flash-sub">Hurry! Stock dey finish fast - Only few left for each colour</div></div>
+<div style="padding:0 10px 8px;font-weight:bold;font-size:15px">🔥 Trending Now <span style="color:#888;font-weight:normal;font-size:12px">- Best sellers this week</span></div>
 <div class="products" id="products"></div>
-<div class="cart-bar">🛒 <span id="count">0</span> | TOTAL: ₦<span id="total">0</span><br><button onclick="openCart()">View Cart</button> <button class="pay" onclick="openCart()">💳 Pay Now - Paystack</button></div>
+<div class="cart-bar"><div>🛒 <b id="count">0</b> items<br><b>Total: ₦<span id="total">0</span></b> <span style="color:#00a651;font-size:11px">+ Free Delivery?</span></div><div><button onclick="openCart()">View Cart</button> <button class="pay" onclick="openCart()">💳 Checkout</button></div></div>
+
+<!-- DETAIL - LIKE JUMIA PRODUCT PAGE -->
+<div class="modal" id="detailModal"><div class="box">
+<button class="close-btn" onclick="closeDetail()">X Close</button>
+<img id="dImg" class="detail-img" src="">
+<div class="thumbs" id="dThumbs"></div>
+<h2 id="dName" style="margin:8px 0 2px"></h2>
+<div><span class="stars">★★★★★</span> <span style="font-size:12px;color:#888" id="dRating"></span></div>
+<div><span style="color:#e60000;font-size:24px;font-weight:900">₦<span id="dPrice"></span></span> <del id="dOld" style="color:#999"></del> <span class="off" id="dOff"></span></div>
+<div class="free">🚚 FREE Delivery in Port Harcourt on orders over ₦30,000 | 📦 In Stock</div>
+<div style="background:#fff2e6;padding:10px;border-radius:10px;font-size:13px;margin:8px 0">🎁 <b>Temu Style Deal:</b> Buy 2 Get Extra 5% OFF | Pay on Delivery? No - Pay Securely with Paystack</div>
+<p id="dDesc" style="color:#666;font-size:13px;line-height:1.6"></p>
+<div class="lab">🎨 Colour: <span id="dColorName" style="color:#fb7701"></span> - Tap to see this cloth in that colour</div>
+<div class="col-row" id="dColors"></div>
+<div class="lab">📏 Size: <span id="dSizeName" style="color:#fb7701"></span></div>
+<div class="size-row" id="dSizes"></div>
+<div class="lab">Quantity:</div>
+<div class="qty-row"><button onclick="changeDQty(-1)">-</button><b id="dQty" style="font-size:20px">1</b><button onclick="changeDQty(1)">+</button><span id="dTotal" style="font-weight:bold"></span></div>
+<button class="add-big" onclick="addFromDetail()">🛒 ADD TO CART</button>
+<button class="buy-big" onclick="buyNow()">⚡ BUY NOW</button>
+<h3>⭐ Customer Reviews</h3>
+<div class="review">⭐⭐⭐⭐⭐ <b>Amara - PH</b><br>"Very fine, colour exactly as picture. Delivery fast!"</div>
+<div class="review">⭐⭐⭐⭐⭐ <b>Chidi - Lagos</b><br>"Quality pass my expectation. I go order again."</div>
+<div class="review">⭐⭐⭐⭐ <b>Fatima - Abuja</b><br>"Fine material, size correct. Recommend!"</div>
+</div></div>
+
+<!-- CART -->
 <div class="modal" id="cartModal"><div class="box">
-<button onclick="closeCart()" style="float:right;background:#000;color:#fff;border:none;padding:8px 14px;border-radius:20px">X Close</button>
-<h2>🛒 Your Cart</h2><div id="cartList"></div>
-<p>Subtotal: ₦<b id="subTotal">0</b></p><p>Delivery: ₦<b id="deliveryFee">2,000</b></p>
+<button class="close-btn" onclick="closeCart()">X Close</button>
+<h2>🛒 Your Cart - Like Jumia Checkout</h2><div id="cartList"></div>
+<p>Subtotal: ₦<b id="subTotal">0</b></p><p>Delivery: ₦<b id="deliveryFee">2,000</b> <span style="color:#00a651;font-size:12px">FREE if over ₦30,000 in PH</span></p>
 <div class="grand">TOTAL TO PAY: ₦<span id="grandTotal">0</span></div><br>
-<input id="cName" placeholder="Full Name *"><input id="cPhone" placeholder="Phone *"><input id="cEmail" placeholder="Email *"><input id="cAddress" placeholder="Address *">
-<select id="cLocation" onchange="renderCart()"><option value="PH">Port Harcourt - ₦2,000</option><option value="Lagos">Lagos - ₦3,500</option><option value="Abuja">Abuja - ₦3,500</option><option value="Other">Other - ₦4,500</option></select>
-<button class="pay-btn" onclick="payWithPaystack()">💳 PAY ₦<span id="payBtnTotal">0</span> NOW</button>
-<button class="wa-btn" onclick="checkoutWhatsApp()">💬 WhatsApp Order</button>
+<input id="cName" placeholder="Full Name *"><input id="cPhone" placeholder="Phone *"><input id="cEmail" placeholder="Email *"><input id="cAddress" placeholder="Delivery Address *">
+<select id="cLocation" onchange="renderCart()"><option value="PH">Port Harcourt - ₦2,000 (FREE over ₦30k)</option><option value="Lagos">Lagos - ₦3,500</option><option value="Abuja">Abuja - ₦3,500</option><option value="Other">Other - ₦4,500</option></select>
+<button class="pay-btn" onclick="payWithPaystack()">💳 PAY ₦<span id="payBtnTotal">0</span> NOW - Paystack Secure</button>
+<button class="wa-btn" onclick="checkoutWhatsApp()">💬 Order on WhatsApp</button>
 </div></div>
 <script>
 var KEY="pk_live_522e90bc4d7ec45abe67ed9b807d7512a0d8ce5b";
 var C={Black:"#000",White:"#fff",Red:"#e60000",Blue:"#0066ff",Green:"#00a651",Pink:"#FFC0CB",Brown:"#8B4513",Beige:"#E8DCC8",Yellow:"#FFD700",Purple:"#800080",Wine:"#722F37",Navy:"#000080",Grey:"#888",Gold:"#FFD700",Silver:"#C0C0C0",Olive:"#808000",Khaki:"#C3B091"};
-// [cat,name,price,img, colours]
 var P=[
-["men","Oversized T-Shirt",9500,"photo-1521572163474-6864f9cf17ab","Black,White,Red,Blue"],
-["men","Baggy Cargo Jeans",18000,"photo-1542272604-787c3835535d","Black,Blue,Brown"],
-["men","Hoodie",19000,"photo-1556821840-3a63f95609a7","Black,Grey,Blue"],
-["men","Vintage Shirt",13500,"photo-1596755094514-f87e34085b2c","White,Blue,Brown"],
-["men","Two-Piece Set",22000,"photo-1617137968427-85924c800a22","Black,Beige,Olive"],
-["men","Blazer / Suit",35000,"photo-1507679799987-c73779587ccf","Black,Navy,Grey"],
-["men","Joggers",15000,"photo-1552902865-b72c031ac5ea","Black,Grey,Olive"],
-["men","Polo Shirt",11000,"photo-1626497764746-6dc36546b388","White,Black,Red"],
-["men","Denim Jacket",20000,"photo-1576995853123-5a10305d93c0","Blue,Black"],
-["men","Corporate Shirt",14000,"photo-1602810318383-e386cc2a3ccf","White,Blue,Black"],
-["men","Sweatshirt",16000,"photo-1578681994506-b8f463449011","Grey,Black,Blue"],
-["men","Shorts",9000,"photo-1591195853828-11db59a44f6b","Black,Khaki,Blue"],
-["men","Track Suit",23000,"photo-1611312449408-fcece27cdbb7","Black,Grey,Blue"],
-["men","Turtle Neck",12000,"photo-1621072156002-e2fccdc0b176","Black,White,Brown"],
-["women","Bodycon Gown",19000,"photo-1595777457583-95e059d581b8","Black,Red,Pink"],
-["women","Ankara Gown",22000,"photo-1539109136881-3be0616acf4b","Yellow,Green,Red"],
-["women","Crop Top + Skirt",14000,"photo-1551163943-3f6a855d1153","White,Black,Pink"],
-["women","Denim Jacket Ladies",17000,"photo-1551537482-c6e64d1b6b4c","Blue,Black"],
-["women","Pleated Skirt",11500,"photo-1594633312681-425c7b97ccd1","Black,Beige,Pink"],
-["women","Maxi Gown",23000,"photo-1515372039744-b8f02a3ae446","Red,Blue,White"],
-["women","Jumpsuit",21000,"photo-1509631179647-0177331693ae","Black,Pink,Green"],
-["women","Cargo Trouser",14500,"photo-1594633312681-425c7b97ccd1","Black,Khaki,Olive"],
-["women","Summer Dress",16000,"photo-1496747611176-843222e1e57c","White,Yellow,Pink"],
-["women","Blazer Set Ladies",26000,"photo-1544441893-675973e31985","Black,Pink,Beige"],
-["women","Mini Dress",15000,"photo-1490481651871-ab68de25d43d","Black,White,Red"],
-["women","Palazzo Pant",13500,"photo-1502716119720-b23a93e5fe1b","Black,Beige,White"],
-["women","Off-Shoulder Top",12000,"photo-1517841905240-472988babdf9","White,Pink,Black"],
-["women","Sequin Party Gown",28000,"photo-1524504388940-b1c1722653e1","Gold,Silver,Red"],
-["women","Satin Dress",20000,"photo-1529139574466-a303027c1d8b","Pink,White,Blue"],
-["women","Abaya",25000,"photo-1531746020798-e6953c6e8e04","Black,Brown,Navy"],
-["women","Bubu Gown",18000,"photo-1492707892479-7bc8d5a4ee93","Blue,Pink,Red"],
-["women","Lace Gown",30000,"photo-1483985988355-763728e1935b","White,Pink,Gold"],
-["women","Peplum Top",11000,"photo-1503342217505-b0a15ec3261c","Red,Black,White"],
-["women","High-Waist Jeans",16000,"photo-1554412933-514a83d2f3c8","Blue,Black"],
-["native","Senator Wear",25000,"photo-1594938298603-c8148c4dae35","Black,White,Wine,Navy"],
-["native","Agbada Grand",45000,"photo-1594938298603-c8148c4dae35","White,Gold,Brown"],
-["native","Kaftan Men",28000,"photo-1603252109303-2751441dd157","White,Black,Beige"],
-["native","Native Two-Piece",27000,"photo-1617137968427-85924c800a22","Black,Beige,Olive"],
-["native","Ankara Shirt Men",18000,"photo-1596755094514-f87e34085b2c","Blue,Yellow,Red"],
-["native","Ankara Gown Women",24000,"photo-1539109136881-3be0616acf4b","Green,Red,Yellow"],
-["native","Ankara Skirt & Blouse",20000,"photo-1551163943-3f6a855d1153","Pink,Yellow,Blue"],
-["native","Aso-Oke Set",40000,"photo-1515372039744-b8f02a3ae446","Gold,Wine,Purple"],
-["native","Danshiki",17000,"photo-1521572163474-6864f9cf17ab","White,Blue,Brown"],
-["native","Isiagu Igbo Wear",32000,"photo-1507679799987-c73779587ccf","Black,White,Wine"],
-["kids","Boys Set",11000,"photo-1622290291468-a28f7a7dc6a8","Blue,Red,Green"],
-["kids","Girls Dress",10000,"photo-1471286174890-9c112ffca5b4","Pink,White,Red"],
-["kids","Kids Hoodie",12000,"photo-1518831959646-742c3a14ebf7","Blue,Pink,Yellow"],
-["kids","Kids Jeans",9500,"photo-1519238263530-99bdd11df2ea","Blue,Black"],
-["kids","Party Gown Kids",15000,"photo-1519457431-44ccd64a579b","Pink,White,Red"],
-["kids","Kids Ankara Set",13000,"photo-1514989940723-e8e51635b782","Yellow,Blue,Red"],
-["kids","Kids T-Shirt Pack",9000,"photo-1472162072942-cd5147eb3902","White,Blue,Red"],
-["shoes","Nike Sneakers",28000,"photo-1542291026-7eec264c27ff","Red,Black,White"],
-["shoes","Ladies Heels",21000,"photo-1543163521-1bf539c55dd2","Black,Red,Pink"],
-["shoes","White Sneakers",24000,"photo-1549298916-b41d501d3772","White,Black"],
-["shoes","Men Loafers",23000,"photo-1614252369475-531eba835eb1","Black,Brown"],
-["shoes","Slides",8000,"photo-1603487742131-4160ec999306","Black,White,Pink"],
-["shoes","Running Shoes",26000,"photo-1560769629-975ec94e6a86","Black,Blue,White"],
-["shoes","Ankle Boots",30000,"photo-1595950653106-6c9ebd614d3a","Black,Brown"],
-["shoes","Sandals",12000,"photo-1606107557195-0e29a4b5b4aa","Black,Brown"],
-["bags","Ladies Handbag",15000,"photo-1584917865442-de89df76afd3","Black,Brown,Pink"],
-["bags","Backpack",16000,"photo-1553062407-98eeb64c6a62","Black,Blue,Grey"],
-["bags","Cross Bag",12000,"photo-1548036328-c9fa89d128fa","Black,Brown,White"],
-["bags","Tote Bag",11000,"photo-1591561954557-26941169b49e","Black,Beige,White"],
-["bags","Travel Bag",20000,"photo-1548863227-3af567fc3b27","Black,Brown,Grey"],
-["acc","Wrist Watch",18000,"photo-1523275335684-37898b6baf30","Black,Silver,Gold"],
-["acc","Sunglasses",8000,"photo-1572635196237-14b3f281503f","Black,Brown"],
-["acc","Face Cap",7000,"photo-1588850561407-ed78c282e89b","Black,White,Red"],
-["acc","Necklace Set",9000,"photo-1515562141207-7a88fb7ce338","Gold,Silver"],
-["acc","Gold Chain",15000,"photo-1611591437281-460bfbe1220a","Gold"],
-["acc","Perfume",12000,"photo-1611085583191-a3b181a88401","Gold,Black"],
-["acc","Hijab / Scarf",5000,"photo-1610694955371-d4a3e0ce4b52","Black,White,Pink"]
+["men","Oversized T-Shirt",9500,"photo-1521572163474-6864f9cf17ab","Black,White,Red,Blue,Green",1240],
+["men","Baggy Cargo Jeans",18000,"photo-1542272604-787c3835535d","Black,Blue,Brown,Grey",860],
+["men","Hoodie",19000,"photo-1556821840-3a63f95609a7","Black,Grey,Blue,Red,Green",2100],
+["men","Vintage Shirt",13500,"photo-1596755094514-f87e34085b2c","White,Blue,Brown,Black",540],
+["men","Two-Piece Set",22000,"photo-1617137968427-85924c800a22","Black,Beige,Olive,Navy",980],
+["men","Blazer / Suit",35000,"photo-1507679799987-c73779587ccf","Black,Navy,Grey,Wine",760],
+["men","Corporate Shirt",14000,"photo-1602810318383-e386cc2a3ccf","White,Blue,Black,Pink",1100],
+["men","Denim Jacket",20000,"photo-1576995853123-5a10305d93c0","Blue,Black,Grey",670],
+["women","Bodycon Gown",19000,"photo-1595777457583-95e059d581b8","Black,Red,Pink,Wine,Blue",1890],
+["women","Ankara Gown",22000,"photo-1539109136881-3be0616acf4b","Yellow,Green,Red,Blue,Purple",2300],
+["women","Maxi Gown",23000,"photo-1515372039744-b8f02a3ae446","Red,Blue,White,Black,Pink",1450],
+["women","Jumpsuit",21000,"photo-1509631179647-0177331693ae","Black,Pink,Green,Blue",890],
+["women","Summer Dress",16000,"photo-1496747611176-843222e1e57c","White,Yellow,Pink,Blue",1320],
+["women","Sequin Party Gown",28000,"photo-1524504388940-b1c1722653e1","Gold,Silver,Red,Black",980],
+["women","Abaya",25000,"photo-1531746020798-e6953c6e8e04","Black,Brown,Navy,Wine",1740],
+["women","Bubu Gown",18000,"photo-1492707892479-7bc8d5a4ee93","Blue,Pink,Red,Yellow",1120],
+["women","Lace Gown",30000,"photo-1483985988355-763728e1935b","White,Pink,Gold,Red",890],
+["women","Satin Dress",20000,"photo-1529139574466-a303027c1d8b","Pink,White,Blue,Red",760],
+["native","Senator Wear",25000,"photo-1594938298603-c8148c4dae35","Black,White,Wine,Navy,Beige",2560],
+["native","Agbada Grand",45000,"photo-1594938298603-c8148c4dae35","White,Gold,Brown,Black,Wine",1980],
+["native","Kaftan Men",28000,"photo-1603252109303-2751441dd157","White,Black,Beige,Brown",1240],
+["native","Ankara Shirt Men",18000,"photo-1596755094514-f87e34085b2c","Blue,Yellow,Red,Green",980],
+["native","Ankara Gown Women",24000,"photo-1539109136881-3be0616acf4b","Green,Red,Yellow,Purple",1560],
+["native","Aso-Oke Set",40000,"photo-1515372039744-b8f02a3ae446","Gold,Wine,Purple,Red",870],
+["kids","Boys Set",11000,"photo-1622290291468-a28f7a7dc6a8","Blue,Red,Green,Yellow",640],
+["kids","Girls Dress",10000,"photo-1471286174890-9c112ffca5b4","Pink,White,Red,Yellow",780],
+["kids","Kids Hoodie",12000,"photo-1518831959646-742c3a14ebf7","Blue,Pink,Yellow,Green",920],
+["kids","Party Gown Kids",15000,"photo-1519457431-44ccd64a579b","Pink,White,Red,Gold",540],
+["shoes","Nike Sneakers",28000,"photo-1542291026-7eec264c27ff","Red,Black,White,Blue",3200],
+["shoes","Ladies Heels",21000,"photo-1543163521-1bf539c55dd2","Black,Red,Pink,Gold",1870],
+["shoes","White Sneakers",24000,"photo-1549298916-b41d501d3772","White,Black,Red",2340],
+["shoes","Men Loafers",23000,"photo-1614252369475-531eba835eb1","Black,Brown,Beige",760],
+["shoes","Slides",8000,"photo-1603487742131-4160ec999306","Black,White,Pink,Blue",2980],
+["shoes","Running Shoes",26000,"photo-1560769629-975ec94e6a86","Black,Blue,White,Red",1650],
+["bags","Ladies Handbag",15000,"photo-1584917865442-de89df76afd3","Black,Brown,Pink,Red",1340],
+["bags","Backpack",16000,"photo-1553062407-98eeb64c6a62","Black,Blue,Grey,Green",1120],
+["bags","Cross Bag",12000,"photo-1548036328-c9fa89d128fa","Black,Brown,White,Pink",980],
+["bags","Tote Bag",11000,"photo-1591561954557-26941169b49e","Black,Beige,White,Pink",670],
+["acc","Wrist Watch",18000,"photo-1523275335684-37898b6baf30","Black,Silver,Gold,Brown",2100],
+["acc","Sunglasses",8000,"photo-1572635196237-14b3f281503f","Black,Brown,Gold",1540],
+["acc","Face Cap",7000,"photo-1588850561407-ed78c282e89b","Black,White,Red,Blue",1980],
+["acc","Perfume",12000,"photo-1611085583191-a3b181a88401","Gold,Black,Pink",1760],
+["acc","Hijab / Scarf",5000,"photo-1610694955371-d4a3e0ce4b52","Black,White,Pink,Beige",2340]
 ];
-var cart=[],cur=P,selC={},selS={};
+// Flash sale countdown
+var secs=5*3600+59*60+59; setInterval(function(){secs--;if(secs<0)secs=5*3600;var h=Math.floor(secs/3600),m=Math.floor((secs%3600)/60),s=secs%60;document.getElementById('timer').innerText=(h<10?"0"+h:h)+":"+(m<10?"0"+m:m)+":"+(s<10?"0"+s:s);},1000);
+var cart=[],cur=P,curIdx=0,curColor="",curSize="M",curQty=1,curImg="";
 var SIZES=["S","M","L","XL","XXL"];
-document.getElementById('totalCount').innerText=P.length;
-function show(list){var h="";for(var i=0;i<list.length;i++){var p=list[i];var idx=P.indexOf(p);if(!selC[idx])selC[idx]=p[4].split(",")[0];if(!selS[idx])selS[idx]="M";var cols=p[4].split(",");var dots="";for(var k=0;k<cols.length;k++){dots+='<div class="dot '+(selC[idx]==cols[k]?'sel':'')+'" style="background:'+(C[cols[k]]||'#ccc')+'" onclick="pickC('+idx+',\''+cols[k]+'\')"></div>';}var sz="";for(var s=0;s<SIZES.length;s++){sz+='<div class="sz '+(selS[idx]==SIZES[s]?'sel':'')+'" onclick="pickS('+idx+',\''+SIZES[s]+'\')">'+SIZES[s]+'</div>';}h+='<div class="card"><img src="https://images.unsplash.com/'+p[3]+'?w=500"><span class="badge">NEW</span><h3>'+p[1]+'</h3><div class="lab">Colour: <b>'+selC[idx]+'</b></div><div class="dots">'+dots+'</div><div class="lab">Size: <b>'+selS[idx]+'</b></div><div class="sizes">'+sz+'</div><p>₦'+p[2].toLocaleString()+' <del>₦'+(p[2]+6000).toLocaleString()+'</del></p><button class="add" onclick="addToCart('+idx+')">Add to Cart</button></div>';}document.getElementById('products').innerHTML=h;}
-function pickC(idx,col){selC[idx]=col;show(cur);}
-function pickS(idx,sz){selS[idx]=sz;show(cur);}
-function addToCart(idx){var p=P[idx];var col=selC[idx]||"M";var sz=selS[idx]||"M";var key=p[1]+"|"+col+"|"+sz;var f=null;for(var i=0;i<cart.length;i++){if(cart[i].key==key)f=cart[i];}if(f)f.qty++;else cart.push({key:key,name:p[1],color:col,size:sz,price:p[2],img:"https://images.unsplash.com/"+p[3]+"?w=500",qty:1});updateCart();alert(p[1]+" - "+col+" - Size "+sz+" added!");}
-function getTotals(){var sub=0,cnt=0;for(var i=0;i<cart.length;i++){sub+=cart[i].price*cart[i].qty;cnt+=cart[i].qty;}var loc=document.getElementById('cLocation').value;var fee=loc=="PH"?2000:loc=="Other"?4500:3500;return{sub:sub,cnt:cnt,fee:fee,grand:sub+fee};}
-function updateCart(){var t=getTotals();document.getElementById('count').innerText=t.cnt;document.getElementById('total').innerText=t.sub.toLocaleString();renderCart();}
+function imgUrl(id){return "https://images.unsplash.com/"+id+"?w=600";}
+function colorImg(base,color){var map={Black:"&sat=-100",White:"&sat=-100&bri=20",Red:"&hue=0",Blue:"&hue=200",Green:"&hue=120",Pink:"&hue=320",Brown:"&hue=30",Beige:"&sat=-50&bri=15",Yellow:"&hue=50",Purple:"&hue=270",Wine:"&hue=340",Navy:"&hue=230",Grey:"&sat=-100",Gold:"&hue=45",Silver:"&sat=-100&bri=20",Olive:"&hue=80",Khaki:"&hue=45&sat=-30"};return imgUrl(base)+(map[color]||"");}
+function show(list){var h="";for(var i=0;i<list.length;i++){var p=list[i];var idx=P.indexOf(p);var off=Math.round(6000/(p[2]+6000)*100);var left=Math.floor(Math.random()*20)+5;var stars="★★★★★";h+='<div class="card" onclick="openDetail('+idx+')"><img src="'+imgUrl(p[3])+'"><div class="card-body"><h3>'+p[1]+'</h3><div><span class="stars">'+stars+'</span> <span class="sold">'+(4.5+Math.random()*0.5).toFixed(1)+' | '+p[5].toLocaleString()+' sold</span></div><div><span class="price">₦'+p[2].toLocaleString()+'</span> <del>₦'+(p[2]+6000).toLocaleString()+'</del> <span class="off">-'+off+'%</span></div><div class="free">🚚 FREE Delivery if over ₦30k</div><div class="progress"><div style="width:'+(100-left)+'%"></div></div><div class="left">🔥 Only '+left+' left - Hurry!</div><button class="add" onclick="event.stopPropagation();openDetail('+idx+')">Tap To See Colours</button></div></div>';}document.getElementById('products').innerHTML=h;}
+function openDetail(idx){curIdx=idx;var p=P[idx];var cols=p[4].split(",");curColor=cols[0];curSize="M";curQty=1;curImg=colorImg(p[3],curColor);document.getElementById('dImg').src=curImg;document.getElementById('dName').innerText=p[1];document.getElementById('dPrice').innerText=p[2].toLocaleString();document.getElementById('dOld').innerText="₦"+(p[2]+6000).toLocaleString();document.getElementById('dOff').innerText="-"+Math.round(6000/(p[2]+6000)*100)+"% OFF";document.getElementById('dRating').innerText="(4.8) | "+p[5].toLocaleString()+" sold | 1,200+ reviews";document.getElementById('dDesc').innerText="Premium "+p[1]+" - Jumia & Temu quality. Available in "+cols.length+" colours: "+p[4]+". Choose your colour below, the picture go change. Choose size, add to cart. Fast delivery PH, Lagos, Abuja. 100% Secure Payment with Paystack.";document.getElementById('dColorName').innerText=curColor;document.getElementById('dSizeName').innerText=curSize;document.getElementById('dQty').innerText=curQty;updateDTotal();var ch="";for(var i=0;i<cols.length;i++){ch+='<div class="col-item '+(i==0?'sel':'')+'" onclick="pickDetailColor(\''+cols[i]+'\',this)"><div class="col-dot" style="background:'+(C[cols[i]]||'#ccc')+';color:'+(cols[i]=='White'?'#000':'#fff')+'">'+cols[i].substring(0,1)+'</div><small>'+cols[i]+'</small></div>';}document.getElementById('dColors').innerHTML=ch;var sz="";for(var s=0;s<SIZES.length;s++){sz+='<div class="sz '+(SIZES[s]=='M'?'sel':'')+'" onclick="pickDetailSize(\''+SIZES[s]+'\',this)">'+SIZES[s]+'</div>';}document.getElementById('dSizes').innerHTML=sz;var th="";for(var t=0;t<cols.length;t++){th+='<img src="'+colorImg(p[3],cols[t])+'" class="'+(t==0?'sel':'')+'" onclick="pickDetailColor(\''+cols[t]+'\',null)">';}document.getElementById('dThumbs').innerHTML=th;document.getElementById('detailModal').style.display='block';}
+function pickDetailColor(col,el){curColor=col;var p=P[curIdx];curImg=colorImg(p[3],col);document.getElementById('dImg').src=curImg;document.getElementById('dColorName').innerText=col;var items=document.querySelectorAll('#dColors .col-item');for(var i=0;i<items.length;i++)items[i].classList.remove('sel');if(el)el.classList.add('sel');}
+function pickDetailSize(sz,el){curSize=sz;document.getElementById('dSizeName').innerText=sz;var items=document.querySelectorAll('#dSizes .sz');for(var i=0;i<items.length;i++)items[i].classList.remove('sel');el.classList.add('sel');}
+function changeDQty(d){curQty+=d;if(curQty<1)curQty=1;if(curQty>10)curQty=10;document.getElementById('dQty').innerText=curQty;updateDTotal();}
+function updateDTotal(){var p=P[curIdx];document.getElementById('dTotal').innerText="Total: ₦"+(p[2]*curQty).toLocaleString();}
+function addFromDetail(){var p=P[curIdx];var key=p[1]+"|"+curColor+"|"+curSize;var f=null;for(var i=0;i<cart.length;i++){if(cart[i].key==key)f=cart[i];}if(f)f.qty+=curQty;else cart.push({key:key,name:p[1],color:curColor,size:curSize,price:p[2],img:curImg,qty:curQty});updateCart();closeDetail();alert(p[1]+" ("+curColor+", Size "+curSize+") x"+curQty+" added!");}
+function buyNow(){addFromDetail();openCart();}
+function closeDetail(){document.getElementById('detailModal').style.display='none';}
+function getTotals(){var sub=0,cnt=0;for(var i=0;i<cart.length;i++){sub+=cart[i].price*cart[i].qty;cnt+=cart[i].qty;}var loc=document.getElementById('cLocation').value;var fee=loc=="PH"?2000:loc=="Other"?4500:3500;if(loc=="PH"&&sub>=30000)fee=0;return{sub:sub,cnt:cnt,fee:fee,grand:sub+fee};}
+;i++){sub+=cart[i].price*cart[i].qty;cnt+=cart[i].qty;}var loc=document.getElementById('cLocation').value;var fee=loc=="PH"?2000:loc=="Other"?4500:3500;if(loc=="PH"&&sub>=30000)fee=0;return{sub:sub,cnt:cnt,fee:fee,grand:sub+fee};}
+function updateCart(){var t=getTotals();document.getElementById('count').innerText=t.cnt;document.getElementById('headCount').innerText=t.cnt;document.getElementById('total').innerText=t.sub.toLocaleString();renderCart();}
 function renderCart(){var t=getTotals();document.getElementById('subTotal').innerText=t.sub.toLocaleString();document.getElementById('deliveryFee').innerText=t.fee.toLocaleString();document.getElementById('grandTotal').innerText=t.grand.toLocaleString();document.getElementById('payBtnTotal').innerText=t.grand.toLocaleString();if(cart.length==0){document.getElementById('cartList').innerHTML="<p>Cart empty</p>";return;}var h="";for(var i=0;i<cart.length;i++){var x=cart[i];h+='<div style="display:flex;gap:10px;border-bottom:1px solid #eee;padding:8px 0"><img src="'+x.img+'" style="width:60px;height:60px;object-fit:cover;border-radius:8px"><div style="flex:1"><b>'+x.name+'</b><br>'+x.color+' | Size '+x.size+' | ₦'+x.price.toLocaleString()+'<br><button onclick="chg('+i+',-1)">-</button> '+x.qty+' <button onclick="chg('+i+',1)">+</button> <button onclick="del('+i+')" style="color:red;border:none;background:none">🗑</button></div><b>₦'+(x.price*x.qty).toLocaleString()+'</b></div>';}document.getElementById('cartList').innerHTML=h;}
 function chg(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);updateCart();}
 function del(i){cart.splice(i,1);updateCart();}
 function openCart(){renderCart();document.getElementById('cartModal').style.display='block';}
 function closeCart(){document.getElementById('cartModal').style.display='none';}
 function filterCat(c,btn){var b=document.querySelectorAll('.cat button');for(var i=0;i<b.length;i++)b[i].classList.remove('active');btn.classList.add('active');if(c=='all')cur=P;else{cur=[];for(var i=0;i<P.length;i++){if(P[i][0]==c)cur.push(P[i]);}}show(cur);}
-function searchP(){var q=document.getElementById('search').value.toLowerCase();if(!q)cur=P;else{cur=[];for(var i=0;i<P.length;i++){if(P[i][1].toLowerCase().indexOf(q)>-1)cur.push(P[i]);}}show(cur);}
-function checkoutWhatsApp(){if(cart.length==0){alert("Cart empty");return;}var t=getTotals();var m="Hello Fashion Hub, I want: ";for(var i=0;i<cart.length;i++){m+=cart[i].name+" ("+cart[i].color+", Size "+cart[i].size+") x"+cart[i].qty+", ";}m+=" TOTAL: ₦"+t.grand.toLocaleString();window.open("https://wa.me/2349037002209?text="+encodeURIComponent(m));}
-function payWithPaystack(){if(cart.length==0){alert("Cart empty");return;}var name=document.getElementById('cName').value,email=document.getElementById('cEmail').value,phone=document.getElementById('cPhone').value,addr=document.getElementById('cAddress').value;if(!name||!email||!phone||!addr){alert("Fill Name, Phone, Email, Address");return;}var t=getTotals();var h=PaystackPop.setup({key:KEY,email:email,amount:t.grand*100,currency:"NGN",ref:"FH-"+Math.floor(Math.random()*1000000000),callback:function(res){alert("✅ Payment Successful! Ref: "+res.reference);var m="NEW PAID ORDER! Ref: "+res.reference+" Name: "+name+" Phone: "+phone+" Address: "+addr+" Order: ";for(var i=0;i<cart.length;i++){m+=cart[i].name+" ("+cart[i].color+", "+cart[i].size+") x"+cart[i].qty+", ";}m+=" TOTAL: ₦"+t.grand.toLocaleString();window.open("https://wa.me/2349037002209?text="+encodeURIComponent(m));cart=[];updateCart();closeCart();},onClose:function(){alert("Payment cancelled");}});h.openIframe();}
+function searchP(){var q=document.getElementById('search').value.toLowerCase();if(!q)cur=P;else{cur=[];for(var i=0;i<P.length;i++){
 show(P);
 </script>
 </body>
